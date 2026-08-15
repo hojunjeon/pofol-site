@@ -650,8 +650,8 @@ function renderHome() {
 
 const resumeProjectMedia = {
   pathfinder: {
-    src: "./public/assets/resume/pathfinder-service-16x9.png",
-    alt: "생성 이미지 · 채용공고와 지원자 경험이 하나의 면접 준비 경로로 연결되는 PathFinder 서비스 개념 일러스트",
+    src: "./public/assets/resume/pathfinder-pathi-16x9.png",
+    alt: "생성 이미지 · Pathi가 채용공고·지원자 경험·역량 차이·면접 질문을 면접 준비 경로로 설명하는 PathFinder 서비스 일러스트",
   },
   aegis: {
     src: "./public/assets/resume/aegis-review-16x9.png",
