@@ -30,7 +30,6 @@ export const projects = {
     primary: {
       src: referenceMedia("evidence/autonomous/ggeolgeol/ggeolgeol-driving-8x.gif"),
       alt: "걸음걸음 로봇이 점자블록 옆을 주행하는 실제 주행 장면",
-      caption: "실제 주행 기록 · 점자블록 옆으로 offset 경로를 유지하는 순찰",
     },
     decision: [
       { text: "일반 보도블록 구간도 달려야 해서" },
@@ -293,7 +292,6 @@ export const projects = {
     primary: {
       src: referenceMedia("evidence/robotics/apple-robot-platform.png"),
       alt: "과수원에서 사과를 수확하고 Load Cell로 분류하는 이동형 Edge AI 로봇",
-      caption: "실제 운영 환경 · 과수원 실증 플랫폼 (조명 변화 · 바람 · 진동)",
     },
     decision: [
       { text: "목표점에서 멈추지 못했습니다." },
@@ -405,7 +403,6 @@ export const projects = {
     primary: {
       src: referenceMedia("evidence/autonomous/competition/futurecar-2024-official.png"),
       alt: "제3회 미래형자동차 자율주행 SW 경진대회 공식 포스터",
-      caption: "공식 대회 포스터 · 센서 인식이 차량 제어로 넘어가는 경계",
     },
     decision: [
       { text: "인식 결과가 속도·조향 명령으로 넘어가는" },
