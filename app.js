@@ -608,24 +608,24 @@ function renderHome() {
 
 const resumeProjectMedia = {
   pathfinder: {
-    src: "./public/assets/resume/pathfinder-h0.png",
-    alt: "채용공고·역량 차이·내 경험·면접 질문을 연결해 방향을 제시하는 PathFinder 이미지",
+    src: "./public/assets/resume/pathfinder-16x9.png",
+    alt: "생성 이미지 · 채용공고·역량 차이·내 경험·면접 질문을 연결해 방향을 제시하는 PathFinder 개념 일러스트",
   },
   aegis: {
-    src: "./public/assets/resume/aegis-baitbot-runtime-orchestration-v2.png",
-    alt: "합성 통화와 STT 입력을 Orchestrator, Extractor, Verifier가 처리하는 Aegis 미끼봇 PoC 개념 일러스트",
+    src: "./public/assets/resume/aegis-16x9.png",
+    alt: "생성 이미지 · 합성 통화와 STT 입력이 Orchestrator, Extractor, Verifier를 거쳐 검증 이벤트가 되는 Aegis 개념 일러스트",
   },
   apple: {
-    src: "./public/assets/resume/apple-edge-pipeline-concept.png",
-    alt: "카메라 인식부터 목표 좌표·Jacobian 제어·구동으로 이어지는 Edge 파이프라인 개념 일러스트",
+    src: "./public/assets/resume/apple-edge-16x9.png",
+    alt: "생성 이미지 · 카메라 인식부터 사과 수확·분류까지 이어지는 Edge AI 로봇 개념 장면",
   },
   rl: {
-    src: "./public/assets/resume/robotrl-curriculum-preview.png",
-    alt: "RobotRL curriculum의 맥락을 보여주는 시뮬레이션 환경 이미지",
+    src: "./public/assets/resume/robotrl-16x9.png",
+    alt: "생성 이미지 · RobotRL curriculum의 로봇팔 조작 실험을 보여주는 시뮬레이션 개념 장면",
   },
   ggeolgeol: {
-    src: "./public/assets/resume/ggeolgeol-camera-robot.png",
-    alt: "점자블록 옆 경로를 주행하는 카메라 탑재 걸음걸음 순찰 로봇 이미지",
+    src: "./public/assets/resume/ggeolgeol-16x9.png",
+    alt: "생성 이미지 · 점자블록을 따라 주행하는 카메라 탑재 걸음걸음 순찰 로봇 개념 장면",
   },
 };
 
