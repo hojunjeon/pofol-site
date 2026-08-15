@@ -193,8 +193,36 @@ const techLogos = {
   "Ubuntu 20.04": "ubuntu.svg",
   "Docker": "docker.svg",
   "C++": "cplusplus.svg",
+  "GraphRAG": "graphrag.svg",
+  "STT": "stt.svg",
+  "JSON Schema": "jsonschema.svg",
+  "Orchestrator": "orchestrator.svg",
+  "Extractor": "extractor.svg",
+  "Verifier": "verifier.svg",
+  "Dashboard": "dashboard.svg",
+  "Hermes Agent": "hermes-agent.svg",
+  "Kanban": "kanban.svg",
+  "cron": "cron.svg",
+  "AIHub dataset": "aihub.png",
+  "Dynamixel": "dynamixel.png",
+  "Load Cell": "load-cell.svg",
+  "UART": "uart.svg",
+  "RL": "rl.svg",
+  "checkpoint": "checkpoint.svg",
+  "plan·implement": "plan-implement.svg",
+  "test": "test.svg",
+  "train·evaluate": "train-evaluate.svg",
+  "Camera geometry": "camera-geometry.svg",
+  "Offset path": "offset-path.svg",
+  "Safety target": "safety-target.svg",
+  "Static contract": "static-contract.svg",
+  "LiDAR": "lidar.svg",
+  "초음파 센서": "ultrasonic.svg",
+  "Camera": "camera.svg",
+  "PID": "pid.svg",
+  "Ackermann": "ackermann.svg",
 };
-const wideTechLogos = new Set(["mujoco.png", "oracle.svg"]);
+const wideTechLogos = new Set(["mujoco.png", "oracle.svg", "dynamixel.png", "aihub.png"]);
 
 function techIcon(name) {
   const file = techLogos[name];
