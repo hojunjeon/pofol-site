@@ -3400,12 +3400,10 @@ svg {
   margin-top: 10px;
 }
 
-.story-visual img {
-  aspect-ratio: 16 / 7;
-}
-
+.story-visual img,
 .pathfinder-signature-visual img {
-  aspect-ratio: 16 / 7;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 .dark-flow-panel .strategy-visual {
@@ -3429,7 +3427,7 @@ svg {
 
   .pathfinder-signature-visual img,
   .story-visual img {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: auto;
   }
 }
 
@@ -3843,14 +3841,11 @@ svg {
     margin-top: 8px;
   }
 
-  .project-pathfinder .story-visual img {
-    height: 112px;
-    aspect-ratio: auto;
-  }
-
+  .project-pathfinder .story-visual img,
   .project-pathfinder .pathfinder-signature-visual img {
-    height: 150px;
+    height: auto;
     aspect-ratio: auto;
+    object-fit: contain;
   }
 
   .project-aegis .artifact-panel,
