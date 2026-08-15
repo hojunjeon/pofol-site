@@ -650,12 +650,12 @@ function renderHome() {
 
 const resumeProjectMedia = {
   pathfinder: {
-    src: "./public/assets/resume/pathfinder-16x9.png",
-    alt: "생성 이미지 · 채용공고·역량 차이·내 경험·면접 질문을 연결해 방향을 제시하는 PathFinder 개념 일러스트",
+    src: "./public/assets/resume/pathfinder-service-16x9.png",
+    alt: "생성 이미지 · 채용공고와 지원자 경험이 하나의 면접 준비 경로로 연결되는 PathFinder 서비스 개념 일러스트",
   },
   aegis: {
-    src: "./public/assets/resume/aegis-16x9.png",
-    alt: "생성 이미지 · 합성 통화와 STT 입력이 Orchestrator, Extractor, Verifier를 거쳐 검증 이벤트가 되는 Aegis 개념 일러스트",
+    src: "./public/assets/resume/aegis-review-16x9.png",
+    alt: "생성 이미지 · 통화 신호가 보안 분석을 거쳐 검토 가능한 증거 리포트가 되는 Aegis 개념 일러스트",
   },
   apple: {
     src: "./public/assets/resume/apple-edge-16x9.png",
