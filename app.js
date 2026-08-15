@@ -8,42 +8,34 @@ const generatedStrategyVisuals = {
   pathfinder: {
     src: "./public/assets/generated/strategy/pathfinder.png",
     alt: "PathFinder가 분리된 입력을 GraphRAG 관계와 필드 검증을 거쳐 면접 준비 로드맵으로 연결하는 개념 시각화",
-    caption: "개념 시각화 · 관계 연결 → 검증 → 다음 행동",
   },
   pathfinderBefore: {
     src: "./public/assets/generated/strategy/pathfinder-before.png",
     alt: "PathFinder 도입 전 공고·이력·자소서가 분리되어 일반적인 조언으로 흩어지는 개념 시각화",
-    caption: "개념 시각화 · 분리된 입력",
   },
   pathfinderAfter: {
     src: "./public/assets/generated/strategy/pathfinder-after.png",
     alt: "PathFinder 도입 후 기업·직무·역량·경험 관계가 검증된 면접 준비 순서로 수렴하는 개념 시각화",
-    caption: "개념 시각화 · 관계 기반 준비 순서",
   },
   aegis: {
     src: "./public/assets/generated/strategy/aegis-role-pipeline.png",
     alt: "Aegis가 STT 대화를 Orchestrator·Extractor·Verifier로 나눠 검토 가능한 마스킹 JSON 이벤트로 만드는 개념 시각화",
-    caption: "개념 시각화 · 대화 유지 → 추출 → 검증",
   },
   hermes: {
     src: "./public/assets/generated/strategy/hermes-operations-contract.png",
     alt: "Hermes가 Telegram 업무를 Kanban 상태와 역할별 기억으로 통제하고 승인 산출물을 Notion에 기록하는 개념 시각화",
-    caption: "개념 시각화 · 운영 계약",
   },
   rl: {
     src: "./public/assets/generated/strategy/rl-experiment-loop.png",
     alt: "RobotRL이 고정 조건 실행과 checkpoint 평가를 반복하며 계속·수정·중단을 판단하는 개념 시각화",
-    caption: "개념 시각화 · checkpoint 기반 실험 루프",
   },
   competition: {
     src: "./public/assets/generated/strategy/competition-control-boundary.png",
     alt: "자율주행 차량의 카메라·LiDAR 인식이 경로·속도 계획을 거쳐 조향·속도 명령으로 이어지는 제어 경계 개념 시각화",
-    caption: "개념 시각화 · 인식 결과 → 차량 명령",
   },
   ros2: {
     src: "./public/assets/generated/strategy/ros2-node-architecture.png",
     alt: "ROS2에서 Camera·LiDAR·IMU·GPS 입력을 기능별 namespace와 node로 나눠 Drive_Bot Ackermann 출력으로 연결하는 개념 시각화",
-    caption: "개념 시각화 · 센서 → node → 차량 출력",
   },
 };
 
@@ -266,7 +258,6 @@ function renderGeneratedVisual(key, className = "") {
   if (!visual) return "";
   return `<figure class="strategy-visual ${className}">
     <img src="${visual.src}" alt="${visual.alt}" loading="lazy" decoding="async" />
-    <figcaption>${visual.caption}</figcaption>
   </figure>`;
 }
 
