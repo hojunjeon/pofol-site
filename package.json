@@ -1,0 +1,15 @@
+{
+  "name": "hojun-portfolio-ui-rebuild",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "ga": "python scripts/ga_optimize.py",
+    "visual": "python scripts/visual_regression.py"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

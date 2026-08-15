@@ -1,0 +1,168 @@
+{
+  "metric": {
+    "name": "structure-weighted visual similarity",
+    "weights": {
+      "majorRegionGeometry": 0.6,
+      "representativeMedia": 0.25,
+      "lowFrequencySSIM": 0.15
+    },
+    "rawScore": "256px unblurred grayscale SSIM, reported separately"
+  },
+  "genes": {
+    "paperPaddingX": 53.0,
+    "paperPaddingY": 42.0,
+    "titleSize": 44.0,
+    "baseSize": 14.0,
+    "moduleGap": 16.0,
+    "sectionGap": 24.0,
+    "cardRadius": 11.01236,
+    "watermarkSize": 94.0,
+    "factGap": 27.989231,
+    "density": 1.0,
+    "borderAlpha": 0.16
+  },
+  "summary": {
+    "weightedSimilarity": 0.975362,
+    "geometry": 0.990082,
+    "representativeMedia": 0.991019,
+    "lowFrequencySSIM": 0.890387,
+    "rawThumbnailSSIM": 0.643884
+  },
+  "projects": {
+    "ggeolgeol": {
+      "weightedSimilarity": 0.963164,
+      "geometry": 0.986873,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.99375,
+        "decision": 0.99375,
+        "strategy": 0.983426,
+        "tech": 0.950837
+      },
+      "representativeMedia": 0.978268,
+      "lowFrequencySSIM": 0.843158,
+      "rawThumbnailSSIM": 0.57311,
+      "pageHeight": 1619.0
+    },
+    "pathfinder": {
+      "weightedSimilarity": 0.984107,
+      "geometry": 0.989004,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.991797,
+        "decision": 0.991797,
+        "strategy": 0.975056,
+        "tech": 0.993806
+      },
+      "representativeMedia": 0.998165,
+      "lowFrequencySSIM": 0.941085,
+      "rawThumbnailSSIM": 0.73946,
+      "pageHeight": 1536.0
+    },
+    "aegis": {
+      "weightedSimilarity": 0.978692,
+      "geometry": 0.990973,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.991797,
+        "decision": 0.991797,
+        "strategy": 0.990681,
+        "tech": 0.978962
+      },
+      "representativeMedia": 0.999035,
+      "lowFrequencySSIM": 0.89566,
+      "rawThumbnailSSIM": 0.683296,
+      "pageHeight": 1536.0
+    },
+    "hermes": {
+      "weightedSimilarity": 0.975181,
+      "geometry": 0.991507,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.99375,
+        "decision": 0.99375,
+        "strategy": 0.980078,
+        "tech": 0.99615
+      },
+      "representativeMedia": 0.997227,
+      "lowFrequencySSIM": 0.873137,
+      "rawThumbnailSSIM": 0.637606,
+      "pageHeight": 1619.0
+    },
+    "parking": {
+      "weightedSimilarity": 0.976898,
+      "geometry": 0.99352,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.999219,
+        "decision": 0.999219,
+        "strategy": 0.988337,
+        "tech": 0.972712
+      },
+      "representativeMedia": 0.998923,
+      "lowFrequencySSIM": 0.873701,
+      "rawThumbnailSSIM": 0.645185,
+      "pageHeight": 1536.0
+    },
+    "apple": {
+      "weightedSimilarity": 0.973326,
+      "geometry": 0.992692,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.99375,
+        "decision": 0.99375,
+        "strategy": 0.992634,
+        "tech": 0.980915
+      },
+      "representativeMedia": 0.973919,
+      "lowFrequencySSIM": 0.894877,
+      "rawThumbnailSSIM": 0.636,
+      "pageHeight": 1536.0
+    },
+    "rl": {
+      "weightedSimilarity": 0.975248,
+      "geometry": 0.985156,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.991016,
+        "decision": 0.991016,
+        "strategy": 0.972042,
+        "tech": 0.97115
+      },
+      "representativeMedia": 0.997609,
+      "lowFrequencySSIM": 0.898345,
+      "rawThumbnailSSIM": 0.578187,
+      "pageHeight": 1536.0
+    },
+    "competition": {
+      "weightedSimilarity": 0.971803,
+      "geometry": 0.987261,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.991406,
+        "decision": 0.991406,
+        "strategy": 0.97606,
+        "tech": 0.978962
+      },
+      "representativeMedia": 0.977152,
+      "lowFrequencySSIM": 0.901056,
+      "rawThumbnailSSIM": 0.65432,
+      "pageHeight": 1536.0
+    },
+    "ros2": {
+      "weightedSimilarity": 0.97984,
+      "geometry": 0.993754,
+      "geometryParts": {
+        "pageHeight": 1.0,
+        "primary": 0.999219,
+        "decision": 0.999219,
+        "strategy": 0.982478,
+        "tech": 0.986384
+      },
+      "representativeMedia": 0.998871,
+      "lowFrequencySSIM": 0.892463,
+      "rawThumbnailSSIM": 0.647788,
+      "pageHeight": 1536.0
+    }
+  }
+}
