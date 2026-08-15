@@ -3825,11 +3825,17 @@ svg {
   }
 
   .project-aegis .strategy-visual img,
-  .project-hermes .strategy-visual img,
+  .project-hermes .strategy-visual img {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
+
   .project-rl .strategy-visual img,
   .project-competition .strategy-visual img,
   .project-ros2 .strategy-visual img {
-    height: 240px;
-    aspect-ratio: auto;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
   }
 }
