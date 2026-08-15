@@ -606,8 +606,32 @@ function renderHome() {
     </main>${siteFooter("home")}</div>`;
 }
 
+const resumeProjectMedia = {
+  pathfinder: {
+    src: "./public/assets/resume/pathfinder-h0.png",
+    alt: "채용공고·역량 차이·내 경험·면접 질문을 연결해 방향을 제시하는 PathFinder 이미지",
+  },
+  aegis: {
+    src: "./public/assets/resume/aegis-baitbot-runtime-orchestration-v2.png",
+    alt: "합성 통화와 STT 입력을 Orchestrator, Extractor, Verifier가 처리하는 Aegis 미끼봇 PoC 개념 일러스트",
+  },
+  apple: {
+    src: "./public/assets/resume/apple-edge-pipeline-concept.png",
+    alt: "카메라 인식부터 목표 좌표·Jacobian 제어·구동으로 이어지는 Edge 파이프라인 개념 일러스트",
+  },
+  rl: {
+    src: "./public/assets/resume/robotrl-curriculum-preview.png",
+    alt: "RobotRL curriculum의 맥락을 보여주는 시뮬레이션 환경 이미지",
+  },
+  ggeolgeol: {
+    src: "./public/assets/resume/ggeolgeol-camera-robot.png",
+    alt: "점자블록 옆 경로를 주행하는 카메라 탑재 걸음걸음 순찰 로봇 이미지",
+  },
+};
+
 function renderResumeProject(project, index) {
-  return `<article class="resume-project"><div class="resume-project-number">${String(index + 1).padStart(2, "0")}</div><div class="resume-project-copy"><p class="eyebrow">${project.domain.toUpperCase()}</p><h3>${project.title}</h3><strong>${project.decision.filter((part) => !part.sub).map((part) => part.text).join(" ")}</strong><p>${project.summary}</p><ul>${project.tech.slice(0, 6).map((item) => `<li>${item}</li>`).join("")}</ul><a href="/${project.domain === "autonomous" ? "autonomous-driving" : project.domain}#${project.slug}">상세 프로젝트 보기 <span>→</span></a></div><figure><img src="${project.primary.src}" alt="${project.primary.alt}" loading="lazy" decoding="async" /></figure></article>`;
+  const media = resumeProjectMedia[project.slug] || project.primary;
+  return `<article class="resume-project"><div class="resume-project-number">${String(index + 1).padStart(2, "0")}</div><div class="resume-project-copy"><p class="eyebrow">${project.domain.toUpperCase()}</p><h3>${project.title}</h3><strong>${project.decision.filter((part) => !part.sub).map((part) => part.text).join(" ")}</strong><p>${project.summary}</p><ul>${project.tech.slice(0, 6).map((item) => `<li>${item}</li>`).join("")}</ul><a href="/${project.domain === "autonomous" ? "autonomous-driving" : project.domain}#${project.slug}">상세 프로젝트 보기 <span>→</span></a></div><figure><img src="${media.src}" alt="${media.alt}" loading="lazy" decoding="async" /></figure></article>`;
 }
 
 function renderResume() {
@@ -615,7 +639,8 @@ function renderResume() {
     <header class="resume-hero"><div><p class="eyebrow">RESUME · JEON HOJUN</p><h1>전호준</h1><p>AI 시스템·로보틱스·자율주행 프로젝트에서 문제를 나누고 구현과 검증이 이어지는 흐름을 설계했습니다.</p><ul><li>AI Systems</li><li>Robotics</li><li>Autonomous Driving</li></ul></div><address><p>Contact</p><a href="mailto:hoj0902@naver.com"><span>Email</span>hoj0902@naver.com</a><a href="tel:+821062893758"><span>Phone</span>010-6289-3758</a><a href="https://github.com/hojunjeon"><span>GitHub</span>github.com/hojunjeon</a></address></header>
     <section class="resume-section"><div class="resume-section-heading"><span>01</span><h2>Technical Skills</h2></div><div class="skill-grid">${skillGroups.map((group) => `<article><h3>${group.title}</h3><p>${group.scope}</p><small>Core</small><ul>${group.core.map((item) => `<li>${item}</li>`).join("")}</ul><small>Supporting</small><ul>${group.support.map((item) => `<li>${item}</li>`).join("")}</ul></article>`).join("")}</div></section>
     <section class="resume-section resume-project-section"><div class="resume-section-heading"><span>02</span><h2>Selected Projects</h2></div>${resumeProjects.map((slug, index) => renderResumeProject(projects[slug], index)).join("")}</section>
-    <section class="resume-section timeline-section"><div class="resume-section-heading"><span>03</span><h2>Growth Timeline</h2></div><ol><li><time>2023–2024</time><strong>Edge AI 로봇</strong><p>인식·제어·임베디드 통합 경험을 쌓았습니다.</p></li><li><time>2024–2025</time><strong>자율주행 제어와 시뮬레이션</strong><p>센서 입력을 주행 명령으로 바꾸고 실행 환경을 분리했습니다.</p></li><li><time>2025–2026</time><strong>AI 시스템과 오케스트레이션</strong><p>관계 검색, 검증 루프, 역할·상태·기억 경계를 설계했습니다.</p></li></ol></section>
+    <section class="resume-section education-section surface-wash" aria-labelledby="education-title"><div class="resume-section-heading"><span>03</span><h2 id="education-title">Education &amp; Training</h2></div><ol class="education-timeline"><li><time>2019.03</time><div><strong>기계설계공학부 학사 시작</strong><p>한국공학대학교</p></div></li><li><time>2021.05</time><div><strong>육군 입대</strong><p>병장 만기전역 2022.10</p></div></li><li><time>2021.09</time><div><strong>학부사무실 근로장학생</strong><p>문서 관리 · 프로그램 설치 · 행사 지원</p></div></li><li><time>2023.07</time><div><strong>졸업작품 시작</strong><p>사과 수확·분류 Edge AI 로봇</p></div></li><li><time>2024.08</time><div><strong>자율주행 SW 경진대회 장려상</strong><p>제3회 미래형자동차 자율주행 SW 경진대회</p></div></li><li><time>2025.02</time><div><strong>학사 졸업</strong><p>학점 4.22 / 4.5</p></div></li><li><time>2025.03</time><div><strong>자율주행 AI 트랙 (앨리스)</strong><p>2025.08 수료 · 이미지 처리, NLP, 강화학습</p></div></li><li><time>2026.01</time><div><strong>SSAFY 15기 입과</strong><p>삼성청년SW / AI아카데미</p></div></li></ol></section>
+    <section class="resume-section additional-section" aria-labelledby="additional-title"><div class="resume-section-heading"><span>04</span><h2 id="additional-title">Awards &amp; Additional Work</h2></div><div class="additional-grid"><article class="additional-card"><p class="card-kicker">활동</p><h3>배드민턴 동아리 운영기획부장</h3><p>한국공학대학교 · 랜덤 매칭, 홍보전 부스, 신입 환영회, MT 운영</p><ul class="pill-list" aria-label="배드민턴 동아리 활동"><li>행사 기획</li><li>신입 모집</li><li>정규 동아리 승격</li></ul></article><article class="additional-card"><p class="card-kicker">경험</p><h3>학부사무실 근로장학생</h3><p>2021.09 – 2024.08</p><ul class="pill-list" aria-label="근로장학 업무"><li>문서 관리</li><li>프로그램 설치</li><li>실습실 유지</li><li>행사 지원</li></ul></article></div></section>
     </main>${siteFooter("resume")}</div>`;
 }
 

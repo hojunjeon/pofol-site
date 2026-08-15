@@ -2546,37 +2546,119 @@ svg {
   object-fit: cover;
 }
 
-.timeline-section ol {
+.surface-wash {
+  background: #f5f7fa;
+}
+
+.education-timeline {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 22px;
   margin: 0;
+  padding: 0 0 0 18px;
+  list-style: none;
+}
+
+.education-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 18px;
+  padding-left: 20px;
+  border-left: 2px solid #d9e0ea;
+}
+
+.education-timeline li::before {
+  position: absolute;
+  top: 5px;
+  left: -6px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #f5f7fa;
+  border-radius: 50%;
+  background: var(--blue);
+  content: "";
+}
+
+.education-timeline time {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.education-timeline strong {
+  display: block;
+  color: #14233e;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.education-timeline p {
+  margin: 4px 0 0;
+  color: #6d788c;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.additional-section {
+  background: #fff;
+}
+
+.additional-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.additional-card {
+  padding: 23px;
+  border: 1px solid rgba(19, 45, 84, .12);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.additional-card .card-kicker {
+  margin: 0;
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.additional-card h3 {
+  margin: 12px 0 8px;
+  color: #14233e;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.additional-card > p:not(.card-kicker) {
+  margin: 0;
+  color: #687388;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 20px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.timeline-section li {
-  padding: 22px;
-  border: 1px solid rgba(20, 44, 81, .12);
-  border-radius: 11px;
-  background: #fff;
-}
-
-.timeline-section time {
-  color: var(--blue);
+.pill-list li {
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 1px solid #d9e0ea;
+  border-radius: 999px;
+  color: #536078;
+  background: #f8fafd;
   font-size: 11px;
-  font-weight: 800;
-}
-
-.timeline-section strong {
-  display: block;
-  margin: 7px 0;
-}
-
-.timeline-section p {
-  margin: 0;
-  color: #6d788c;
-  font-size: 11px;
+  line-height: 1.4;
 }
 
 /* --------------------------------------------------------------------------
@@ -2771,10 +2853,15 @@ svg {
   .apple-changes,
   .ros-steps,
   .skill-grid,
-  .timeline-section ol,
+  .additional-grid,
   .home-card-grid,
   .related-section nav {
     grid-template-columns: 1fr;
+  }
+
+  .education-timeline li {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 
   .decision-banner {
