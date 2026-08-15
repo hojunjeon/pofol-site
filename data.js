@@ -7,6 +7,7 @@ export const routes = [
 ];
 
 const media = (name) => `./public/assets/media/${name}.webp`;
+const referenceMedia = (path) => `./public/${path}`;
 
 export const projects = {
   ggeolgeol: {
@@ -27,7 +28,7 @@ export const projects = {
       flowTone: "orange",
     },
     primary: {
-      src: media("ggeolgeol-hero"),
+      src: referenceMedia("evidence/autonomous/ggeolgeol/ggeolgeol-driving-8x.gif"),
       alt: "걸음걸음 로봇이 점자블록 옆을 주행하는 실제 주행 장면",
       caption: "실제 주행 기록 · 점자블록 옆으로 offset 경로를 유지하는 순찰",
     },
@@ -85,7 +86,7 @@ export const projects = {
       flowTone: "orange",
     },
     primary: {
-      src: media("pathfinder-hero"),
+      src: referenceMedia("generated/pathfinder-explain.png"),
       alt: "채용 공고, 이력, 관계 그래프와 면접 준비 로드맵을 연결한 PathFinder 대표 화면",
     },
     decision: [
@@ -148,7 +149,7 @@ export const projects = {
       flowTone: "orange",
     },
     primary: {
-      src: media("aegis-hero"),
+      src: referenceMedia("generated/aegis-stt-event-profile.png"),
       alt: "통화 STT, 추출된 JSON 위험정보 이벤트, 검토 대시보드로 이어지는 Aegis 대표 화면",
     },
     decision: [
@@ -195,7 +196,7 @@ export const projects = {
       flowTone: "ink",
     },
     primary: {
-      src: media("hermes-hero"),
+      src: referenceMedia("generated/hermes-role-map.png"),
       alt: "Human, Telegram, Hermes, EPE, Diki, Apostles와 Notion을 연결한 시스템 구성도",
     },
     decision: [
@@ -243,7 +244,7 @@ export const projects = {
       flowTone: "teal",
     },
     primary: {
-      src: media("parking-hero"),
+      src: referenceMedia("evidence/ai/parking-segmentation.png"),
       alt: "도로 영상에 주행 가능 영역, 주차면, 장애물 결과가 표시된 하이브리드 주차공간 탐지 결과",
     },
     decision: [
@@ -290,7 +291,7 @@ export const projects = {
       contextTone: "green",
     },
     primary: {
-      src: media("apple-hero"),
+      src: referenceMedia("evidence/robotics/apple-robot-platform.png"),
       alt: "과수원에서 사과를 수확하고 Load Cell로 분류하는 이동형 Edge AI 로봇",
       caption: "실제 운영 환경 · 과수원 실증 플랫폼 (조명 변화 · 바람 · 진동)",
     },
@@ -344,7 +345,7 @@ export const projects = {
       flowTone: "orange",
     },
     primary: {
-      src: media("rl-hero"),
+      src: referenceMedia("evidence/robotics/training-stage-final.gif"),
       alt: "MuJoCo FetchSideBinPlace 환경에서 로봇팔이 물체를 bin으로 옮기는 학습 장면",
     },
     decision: [
@@ -402,9 +403,9 @@ export const projects = {
       flowTone: "orange",
     },
     primary: {
-      src: media("competition-hero"),
-      alt: "실내 모사 트랙에 배치된 Team Tino 자율주행 전동차",
-      caption: "실제 대회 현장 · 실내 모사 트랙 주행 및 미션 수행",
+      src: referenceMedia("evidence/autonomous/competition/futurecar-2024-official.png"),
+      alt: "제3회 미래형자동차 자율주행 SW 경진대회 공식 포스터",
+      caption: "공식 대회 포스터 · 센서 인식이 차량 제어로 넘어가는 경계",
     },
     decision: [
       { text: "인식 결과가 속도·조향 명령으로 넘어가는" },
@@ -454,7 +455,7 @@ export const projects = {
       flowTone: "orange",
     },
     primary: {
-      src: media("ros2-hero"),
+      src: referenceMedia("evidence/autonomous/ros2/ros2-gazebo.png"),
       alt: "ROS2와 Gazebo에서 차선·신호·보행자·LiDAR가 표시된 자율주행 시뮬레이션",
     },
     decision: [
