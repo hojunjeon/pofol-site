@@ -6,8 +6,8 @@ export const routes = [
   { href: "/autonomous-driving", label: "Autonomous", key: "autonomous" },
 ];
 
-const media = (name) => `./public/assets/media/${name}.webp`;
 const referenceMedia = (path) => `./public/${path}`;
+const strategyMedia = (name) => `./public/assets/generated/strategy/${name}.png`;
 
 export const projects = {
   ggeolgeol: {
@@ -59,9 +59,9 @@ export const projects = {
         text: "입력은 달라도 같은 주행 계약으로 합류하는 세 가지 모드",
       },
       modes: [
-        { index: "01", title: "점자블록 주행", text: "점자블록을 따라 옆으로 offset 경로를 유지하며 순찰합니다.", src: media("ggeolgeol-mode-tactile") },
-        { index: "02", title: "일반 보도블록 주행", text: "점자블록이 없는 일반 보도블록 구간에서는 일반 경로로 순찰합니다.", src: media("ggeolgeol-mode-general") },
-        { index: "03", title: "장애물 회피", text: "주행 경로 앞 장애물을 만나면 안전하게 멈추거나 우회할 수 있도록 별도 모드로 검토합니다.", src: media("ggeolgeol-mode-obstacle"), tone: "orange" },
+        { index: "01", title: "점자블록 주행", text: "점자블록을 따라 옆으로 offset 경로를 유지하며 순찰합니다.", src: strategyMedia("ggeolgeol-mode-tactile") },
+        { index: "02", title: "일반 보도블록 주행", text: "점자블록이 없는 일반 보도블록 구간에서는 일반 경로로 순찰합니다.", src: strategyMedia("ggeolgeol-mode-general") },
+        { index: "03", title: "장애물 회피", text: "주행 경로 앞 장애물을 만나면 안전하게 멈추거나 우회할 수 있도록 별도 모드로 검토합니다.", src: strategyMedia("ggeolgeol-mode-obstacle"), tone: "orange" },
       ],
     },
     tech: ["ROS 2", "Python", "OpenCV", "Camera geometry", "Offset path", "Safety target", "Static contract"],
@@ -262,10 +262,10 @@ export const projects = {
       effects: ["야간·역광 환경에서 안정성 향상", "주차면 경계의 연속성 개선", "객체 위치 정밀도 향상", "유지보수와 모델 교체 용이"],
       pipeline: [
         ["입력 · EDA", "영상 수집·정제·라벨", "camera"],
-        ["SegFormer 영역 분할", "병렬 처리", "grid", media("parking-seg")],
-        ["YOLOv11 객체 탐지", "병렬 처리", "cube", media("parking-det")],
+        ["SegFormer 영역 분할", "병렬 처리", "grid", strategyMedia("parking-segformer")],
+        ["YOLOv11 객체 탐지", "병렬 처리", "cube", strategyMedia("parking-yolov11")],
         ["argmax 결합", "우선순위 규칙으로 합성", "layers"],
-        ["최종 화면", "영역·주차면·장애물", "image", media("parking-final")],
+        ["최종 화면", "영역·주차면·장애물", "image", strategyMedia("parking-fusion")],
       ],
     },
     tech: ["SegFormer", "YOLOv11", "YOLOv8-seg", "OpenCV", "Python", "AIHub dataset"],
@@ -313,12 +313,12 @@ export const projects = {
         { index: "03", label: "모듈 경계", text: "감지·제어·모터 드라이버 경계를 명확히 하고 명령 제한으로 진동 전이를 차단했습니다.", visual: "modules" },
       ],
       scenarios: [
-        ["01", "과수원 인식", media("apple-step-1")],
-        ["02", "사과 검출", media("apple-step-2")],
-        ["03", "목표점 접근", media("apple-step-3")],
-        ["04", "제어 루프", media("apple-step-4")],
-        ["05", "로봇팔 수확", media("apple-step-5")],
-        ["06", "Load Cell 분류", media("apple-step-6")],
+        ["01", "과수원 인식", strategyMedia("apple-step-1")],
+        ["02", "사과 검출", strategyMedia("apple-step-2")],
+        ["03", "목표점 접근", strategyMedia("apple-step-3")],
+        ["04", "제어 루프", strategyMedia("apple-step-4")],
+        ["05", "로봇팔 수확", strategyMedia("apple-step-5")],
+        ["06", "Load Cell 분류", strategyMedia("apple-step-6")],
       ],
     },
     tech: ["YOLOv5", "RealSense D415", "Raspberry Pi", "Arduino", "Dynamixel", "Load Cell", "UART"],

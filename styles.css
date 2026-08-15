@@ -2972,6 +2972,19 @@ svg {
   }
 }
 
+/* The in-app preview can expose a 647px layout viewport. Keep the project
+   index fluid just above the narrow-mobile breakpoint as well. */
+@media (max-width: 700px) {
+  .project-index-card {
+    grid-template-columns: 45px minmax(0, 1fr) 52px;
+    gap: 12px;
+  }
+
+  .project-index-card .index-message {
+    grid-column: 2 / -1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
@@ -3329,6 +3342,74 @@ svg {
     text-align: center;
     justify-content: center;
     font-size: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Generated strategy visuals
+   --------------------------------------------------------------------------
+   These assets are conceptual illustrations, not project evidence. They keep
+   every “전개 · 핵심 판단” section readable while preserving the same
+   parchment / navy / action-blue visual language across all project types.
+   -------------------------------------------------------------------------- */
+.strategy-visual {
+  margin: 14px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--card-radius) - 2px);
+  background: #f8f6f0;
+}
+
+.strategy-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.strategy-visual figcaption {
+  padding: 7px 10px 8px;
+  color: #536079;
+  background: #fffdf8;
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.story-visual {
+  margin-top: 10px;
+}
+
+.story-visual img {
+  aspect-ratio: 16 / 7;
+}
+
+.pathfinder-signature-visual img {
+  aspect-ratio: 16 / 7;
+}
+
+.dark-flow-panel .strategy-visual {
+  border-color: rgba(112, 153, 205, .34);
+  background: #101a2b;
+}
+
+.dark-flow-panel .strategy-visual figcaption {
+  color: #b3bfd0;
+  background: #101a2b;
+}
+
+.ros2-strategy-visual {
+  margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+  .strategy-visual figcaption {
+    font-size: 10px;
+  }
+
+  .pathfinder-signature-visual img,
+  .story-visual img {
+    aspect-ratio: 16 / 8;
   }
 }
 
@@ -3717,4 +3798,38 @@ svg {
 
 @media (min-width: 901px) {
   .project-competition { padding-bottom: 48px; }
+}
+
+@media (min-width: 901px) {
+  .project-pathfinder .story-visual {
+    margin-top: 8px;
+  }
+
+  .project-pathfinder .story-visual img {
+    height: 112px;
+    aspect-ratio: auto;
+  }
+
+  .project-pathfinder .pathfinder-signature-visual img {
+    height: 150px;
+    aspect-ratio: auto;
+  }
+
+  .project-aegis .artifact-panel,
+  .project-hermes .dark-flow-panel,
+  .project-competition .artifact-panel,
+  .project-ros2 .ros-architecture {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .project-aegis .strategy-visual img,
+  .project-hermes .strategy-visual img,
+  .project-rl .strategy-visual img,
+  .project-competition .strategy-visual img,
+  .project-ros2 .strategy-visual img {
+    height: 240px;
+    aspect-ratio: auto;
+  }
 }

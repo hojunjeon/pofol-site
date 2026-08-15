@@ -4,6 +4,49 @@ const app = document.querySelector("#app");
 const query = new URLSearchParams(location.search);
 const previewSlug = query.get("preview");
 
+const generatedStrategyVisuals = {
+  pathfinder: {
+    src: "./public/assets/generated/strategy/pathfinder.png",
+    alt: "PathFinder가 분리된 입력을 GraphRAG 관계와 필드 검증을 거쳐 면접 준비 로드맵으로 연결하는 개념 시각화",
+    caption: "개념 시각화 · 관계 연결 → 검증 → 다음 행동",
+  },
+  pathfinderBefore: {
+    src: "./public/assets/generated/strategy/pathfinder-before.png",
+    alt: "PathFinder 도입 전 공고·이력·자소서가 분리되어 일반적인 조언으로 흩어지는 개념 시각화",
+    caption: "개념 시각화 · 분리된 입력",
+  },
+  pathfinderAfter: {
+    src: "./public/assets/generated/strategy/pathfinder-after.png",
+    alt: "PathFinder 도입 후 기업·직무·역량·경험 관계가 검증된 면접 준비 순서로 수렴하는 개념 시각화",
+    caption: "개념 시각화 · 관계 기반 준비 순서",
+  },
+  aegis: {
+    src: "./public/assets/generated/strategy/aegis-role-pipeline.png",
+    alt: "Aegis가 STT 대화를 Orchestrator·Extractor·Verifier로 나눠 검토 가능한 마스킹 JSON 이벤트로 만드는 개념 시각화",
+    caption: "개념 시각화 · 대화 유지 → 추출 → 검증",
+  },
+  hermes: {
+    src: "./public/assets/generated/strategy/hermes-operations-contract.png",
+    alt: "Hermes가 Telegram 업무를 Kanban 상태와 역할별 기억으로 통제하고 승인 산출물을 Notion에 기록하는 개념 시각화",
+    caption: "개념 시각화 · 운영 계약",
+  },
+  rl: {
+    src: "./public/assets/generated/strategy/rl-experiment-loop.png",
+    alt: "RobotRL이 고정 조건 실행과 checkpoint 평가를 반복하며 계속·수정·중단을 판단하는 개념 시각화",
+    caption: "개념 시각화 · checkpoint 기반 실험 루프",
+  },
+  competition: {
+    src: "./public/assets/generated/strategy/competition-control-boundary.png",
+    alt: "자율주행 차량의 카메라·LiDAR 인식이 경로·속도 계획을 거쳐 조향·속도 명령으로 이어지는 제어 경계 개념 시각화",
+    caption: "개념 시각화 · 인식 결과 → 차량 명령",
+  },
+  ros2: {
+    src: "./public/assets/generated/strategy/ros2-node-architecture.png",
+    alt: "ROS2에서 Camera·LiDAR·IMU·GPS 입력을 기능별 namespace와 node로 나눠 Drive_Bot Ackermann 출력으로 연결하는 개념 시각화",
+    caption: "개념 시각화 · 센서 → node → 차량 출력",
+  },
+};
+
 applyGeneOverrides();
 
 function applyGeneOverrides() {
@@ -218,13 +261,22 @@ function renderSectionLabel(text) {
   return `<p class="strategy-kicker">${text}</p>`;
 }
 
+function renderGeneratedVisual(key, className = "") {
+  const visual = generatedStrategyVisuals[key];
+  if (!visual) return "";
+  return `<figure class="strategy-visual ${className}">
+    <img src="${visual.src}" alt="${visual.alt}" loading="lazy" decoding="async" />
+    <figcaption>${visual.caption}</figcaption>
+  </figure>`;
+}
+
 function renderPipeline(items, { dark = false, compact = false, className = "" } = {}) {
   return `<div class="pipeline ${dark ? "pipeline-dark" : ""} ${compact ? "pipeline-compact" : ""} ${className}" role="img" aria-label="${items.map((item) => item[0]).join("에서 ")}">
     ${items.map((item, index) => {
       const [title, subtitle, iconName, imageSrc] = item;
       return `<div class="pipeline-unit-wrap">
         <article class="pipeline-unit ${imageSrc ? "has-image" : ""}">
-          ${imageSrc ? `<img src="${imageSrc}" alt="" loading="lazy" decoding="async" />` : `<span class="pipeline-icon">${icon(iconName)}</span>`}
+          ${imageSrc ? `<img src="${imageSrc}" alt="${title} 개념 시각화 · 생성 이미지" loading="lazy" decoding="async" />` : `<span class="pipeline-icon">${icon(iconName)}</span>`}
           <strong>${title}</strong>
           <span>${subtitle}</span>
         </article>
@@ -263,7 +315,7 @@ function renderDevelopmentStrategy(project) {
     <ol class="mode-cards">
       ${s.modes.map((mode) => `<li class="mode-card ${mode.tone === "orange" ? "mode-card-orange" : ""}">
         <div class="mode-copy"><span class="number-badge">${mode.index}</span><div><h4>${mode.title}</h4><p>${mode.text}</p></div></div>
-        <img src="${mode.src}" alt="${mode.title} 개념 장면" loading="lazy" decoding="async" />
+        <img src="${mode.src}" alt="${mode.title} 개념 시각화 · 생성 이미지" loading="lazy" decoding="async" />
       </li>`).join("")}
     </ol>
   </section>`;
@@ -278,16 +330,12 @@ function renderPathfinderStrategy(project) {
         <div class="story-head"><span class="number-badge">${block.index}</span>${renderSectionLabel(block.label)}</div>
         <h4>${block.title}</h4>
         <p>${block.text}</p>
-        <div class="${index === 0 ? "disconnected-visual" : "connected-visual"}" aria-hidden="true">
-          ${index === 0
-            ? `<div class="faint-network"></div><div class="loose-inputs"><span>공고</span><span>이력</span><span>자소서</span></div><div class="question-row"><b>?</b><b>?</b><b>?</b></div>`
-            : `<div class="network-nodes">${Array.from({ length: 12 }, (_, i) => `<i style="--i:${i}"></i>`).join("")}</div>`}
-        </div>
+        ${renderGeneratedVisual(index === 0 ? "pathfinderBefore" : "pathfinderAfter", "story-visual")}
       </article>`).join("")}
       <article class="signature-card card-soft">
         <div class="story-head"><span class="number-badge">${s.artifact.index}</span>${renderSectionLabel(s.artifact.label)}</div>
         <p class="signature-caption">${s.artifact.title}</p>
-        ${renderPipeline(s.artifact.flow, { compact: true, className: "pathfinder-pipeline" })}
+        ${renderGeneratedVisual("pathfinder", "pathfinder-signature-visual")}
         <div class="outcome-cards">
           ${s.artifact.outcomes.map(([title, text, iconName]) => `<article><span>${icon(iconName)}</span><h4>${title}</h4><p>${text}</p></article>`).join("")}
         </div>
@@ -320,7 +368,7 @@ function renderAegisStrategy(project) {
     </div>
     <article class="artifact-panel card-soft">
       <div class="artifact-heading"><span>${icon("flow")}</span><div>${renderSectionLabel("검토 가능한 위험정보 이벤트 생성 흐름")}<p>대화를 유지하면서 얻은 단서를 역할별로 추출·검증해 사람이 읽을 수 있는 JSON 이벤트로 남깁니다.</p></div></div>
-      ${renderPipeline(s.flow, { compact: true, className: "aegis-pipeline" })}
+      ${renderGeneratedVisual("aegis", "aegis-strategy-visual")}
     </article>
   </section>`;
 }
@@ -373,7 +421,7 @@ function renderCompetitionStrategy(project) {
     </div>
     <article class="artifact-panel card-soft">
       <div class="artifact-heading"><span>${icon("convert")}</span><div>${renderSectionLabel("센서 인식에서 차량 구동까지")}<p>내 역할은 인식 결과를 차량이 실행할 수 있는 속도·조향 명령으로 바꾸는 제어 경계였습니다.</p></div></div>
-      ${renderPipeline(s.pipeline, { compact: true, className: "competition-pipeline" })}
+      ${renderGeneratedVisual("competition", "competition-strategy-visual")}
     </article>
   </section>`;
 }
@@ -395,7 +443,7 @@ function renderHermesStrategy(project) {
     </div>
     <article class="dark-flow-panel">
       <div class="dark-panel-title"><span>${icon("document")}</span><strong>운영 계약</strong></div>
-      ${renderPipeline(s.flow, { dark: true, compact: true, className: "hermes-pipeline" })}
+      ${renderGeneratedVisual("hermes", "hermes-strategy-visual")}
     </article>
   </section>`;
 }
@@ -418,7 +466,7 @@ function renderRlStrategy(project) {
     <div class="state-gates">${s.gates.map(([title, text, iconName, tone]) => `<article class="gate-${tone}"><span>${icon(iconName)}</span><div><h4>${title}</h4><p>${text}</p></div></article>`).join("")}</div>
     <article class="dark-flow-panel rl-flow-panel">
       <div class="dark-panel-title"><span>${icon("repeat")}</span><strong>checkpoint 기반 실험 루프</strong></div>
-      ${renderPipeline(s.flow, { dark: true, compact: true, className: "rl-pipeline" })}
+      ${renderGeneratedVisual("rl", "rl-strategy-visual")}
     </article>
   </section>`;
 }
@@ -452,7 +500,7 @@ function renderAppleStrategy(project) {
     </div>
     <article class="scenario-panel card-soft">
       <div class="artifact-heading"><span>${icon("route")}</span><div>${renderSectionLabel("시그니처 아티팩트 · perception to action")}<p>과수원 인식부터 수확·분류까지 실제 제어 경계를 여섯 단계로 연결했습니다.</p></div></div>
-      <ol class="scenario-strip">${s.scenarios.map(([index, title, src]) => `<li><div><span>${index}</span><strong>${title}</strong></div><img src="${src}" alt="${title} 장면" loading="lazy" decoding="async" /></li>`).join("")}</ol>
+      <ol class="scenario-strip">${s.scenarios.map(([index, title, src]) => `<li><div><span>${index}</span><strong>${title}</strong></div><img src="${src}" alt="${title} 개념 시각화 · 생성 이미지" loading="lazy" decoding="async" /></li>`).join("")}</ol>
     </article>
   </section>`;
 }
@@ -460,13 +508,7 @@ function renderAppleStrategy(project) {
 function renderRos2Architecture(s) {
   return `<article class="ros-architecture card-soft">
     <div class="artifact-heading"><span>${icon("graph")}</span><div>${renderSectionLabel("검증 가능한 ROS2 node architecture")}<p>센서 입력과 기능 노드를 namespace로 분리하고 Drive_Bot의 Ackermann 출력까지 한 방향으로 연결했습니다.</p></div></div>
-    <div class="architecture-map">
-      <div class="architecture-column sensor-column"><small>센서 입력</small>${s.architecture.sensors.map((item) => `<span>${icon(item === "Camera" ? "camera" : "sensors")}<b>${item}</b></span>`).join("")}</div>
-      <span class="arch-arrow">→</span>
-      <div class="architecture-column node-column"><small>기능별 node / namespace</small>${s.architecture.nodes.map((item) => `<span>${icon("cube")}<b>${item}</b></span>`).join("")}</div>
-      <span class="arch-arrow">→</span>
-      <div class="architecture-column output-column"><small>차량 출력</small>${s.architecture.output.map((item) => `<span>${icon("car")}<b>${item}</b></span>`).join("")}</div>
-    </div>
+    ${renderGeneratedVisual("ros2", "ros2-strategy-visual")}
     <div class="scenario-tags"><small>시나리오 단위 검증</small>${s.architecture.scenarios.map((item) => `<span>${icon("check")}${item}</span>`).join("")}</div>
   </article>`;
 }
