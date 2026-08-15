@@ -466,14 +466,24 @@ function renderOperationsStrategy(project) {
   return project.layout === "hermes" ? renderHermesStrategy(project) : renderRlStrategy(project);
 }
 
+const appleChangeVisuals = {
+  curve: {
+    src: "./public/assets/generated/strategy/apple-change-1.png",
+    alt: "생성 이미지 · 거리 기반 가변 속도 프로파일 감속 개념 도식",
+  },
+  loop: {
+    src: "./public/assets/generated/strategy/apple-change-2.png",
+    alt: "생성 이미지 · 카메라·추론·제어와 지연 보정 피드백 루프 개념 도식",
+  },
+  modules: {
+    src: "./public/assets/generated/strategy/apple-change-3.png",
+    alt: "생성 이미지 · 감지·제어·구동 모듈 경계와 제한 조건 개념 도식",
+  },
+};
+
 function appleVisual(type) {
-  if (type === "curve") {
-    return `<svg class="mini-diagram curve-diagram" viewBox="0 0 180 78" aria-hidden="true"><path d="M8 62C38 62 45 58 62 50S91 26 110 17s37-6 61-6"/><path d="M8 62h164"/><circle cx="155" cy="12" r="5"/><path class="target-line" d="M155 5v64"/></svg>`;
-  }
-  if (type === "loop") {
-    return `<div class="mini-diagram loop-diagram" aria-hidden="true"><span>카메라</span><i>→</i><span>추론</span><i>→</i><span>제어</span><b>↺</b></div>`;
-  }
-  return `<div class="mini-diagram module-diagram" aria-hidden="true"><span>감지</span><i></i><span>제어</span><i></i><span>구동</span></div>`;
+  const visual = appleChangeVisuals[type] || appleChangeVisuals.modules;
+  return `<img class="mini-diagram mini-diagram-image" src="${visual.src}" alt="${visual.alt}" loading="lazy" decoding="async" width="1200" height="800" />`;
 }
 
 function renderAppleStrategy(project) {

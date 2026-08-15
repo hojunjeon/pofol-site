@@ -1908,6 +1908,15 @@ svg {
   margin-top: 18px;
 }
 
+.mini-diagram-image {
+  display: block;
+  width: 100%;
+  height: 82px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+}
+
 .curve-diagram {
   width: 100%;
   height: 76px;
@@ -1979,7 +1988,7 @@ svg {
 
 .scenario-strip {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 7px;
   margin: 0;
   padding: 0;
@@ -3168,7 +3177,7 @@ svg {
   }
 
   .scenario-strip {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   /* RL reference is a three-column decision row. */
@@ -3751,13 +3760,32 @@ svg {
   }
 
   .project-apple .scenario-panel {
-    height: 162px;
+    height: auto;
     min-height: 0;
-    overflow: hidden;
+    overflow: visible;
+  }
+
+  .project-apple .scenario-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .project-apple .scenario-strip img {
-    height: 108px;
+    height: 112px;
+    object-fit: cover;
+  }
+
+  .project-apple .scenario-strip li {
+    min-width: 0;
+  }
+
+  .project-apple .scenario-strip li > div {
+    min-width: 0;
+  }
+
+  .project-apple .scenario-strip li > div strong {
+    overflow-wrap: anywhere;
+    word-break: keep-all;
   }
 
   .project-competition .competition-lead {
