@@ -2190,24 +2190,17 @@ svg {
   color: var(--blue);
 }
 
-.brand-mark {
-  display: inline-grid;
-  min-width: 20px;
+.tech-row .tech-logo {
+  width: 20px;
   height: 20px;
-  place-items: center;
-  color: var(--blue);
-  font-size: 9px;
-  font-weight: 850;
+  flex: none;
+  object-fit: contain;
 }
 
-.brand-mark.fastapi { color: #079e86; }
-.brand-mark.vue { color: #1ba572; font-size: 15px; }
-.brand-mark.python { color: #356e9d; }
-.brand-mark.opencv { color: #ee3954; }
-.brand-mark.arduino { color: #00979d; font-size: 18px; }
-.brand-mark.berry { color: #cf3155; }
-.brand-mark.docker { color: #2383de; }
-.brand-mark.mujoco { color: #ef8f2c; }
+.tech-row .tech-logo-wide {
+  width: auto;
+  max-width: 72px;
+}
 
 /* --------------------------------------------------------------------------
    Home

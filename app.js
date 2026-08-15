@@ -162,32 +162,56 @@ function siteFooter(current) {
   </footer>`;
 }
 
+const techLogoDir = "/public/assets/icons/";
+const techLogos = {
+  "ROS 2": "ros2.svg",
+  "ROS2 Foxy": "ros2.svg",
+  "ROS": "ros.svg",
+  "Python": "python.svg",
+  "OpenCV": "opencv.svg",
+  "FastAPI": "fastapi.svg",
+  "Django REST Framework": "django.svg",
+  "Vue.js": "vue.svg",
+  "SQL": "postgresql.svg",
+  "Playwright": "playwright.svg",
+  "LLM pipeline": "huggingface.svg",
+  "LLM": "huggingface.svg",
+  "Telegram Bot": "telegram.svg",
+  "Oracle Cloud": "oracle.svg",
+  "Honcho": "honcho.png",
+  "n8n": "n8n.svg",
+  "Notion": "notion.svg",
+  "SegFormer": "nvidia.svg",
+  "YOLOv11": "pytorch.svg",
+  "YOLOv8-seg": "pytorch.svg",
+  "YOLOv5": "pytorch.svg",
+  "RealSense D415": "intel.svg",
+  "Raspberry Pi": "raspberrypi.svg",
+  "Arduino": "arduino.svg",
+  "MuJoCo": "mujoco.png",
+  "Gazebo Classic": "gazebo.svg",
+  "Ubuntu 20.04": "ubuntu.svg",
+  "Docker": "docker.svg",
+  "C++": "cplusplus.svg",
+};
+const wideTechLogos = new Set(["mujoco.png", "oracle.svg"]);
+
 function techIcon(name) {
+  const file = techLogos[name];
+  if (file) {
+    return `<img class="tech-logo${wideTechLogos.has(file) ? " tech-logo-wide" : ""}" src="${techLogoDir}${file}" alt="" loading="lazy" decoding="async" />`;
+  }
   const normalized = name.toLowerCase();
-  if (normalized.includes("python")) return `<span class="brand-mark python">Py</span>`;
-  if (normalized.includes("opencv")) return `<span class="brand-mark opencv">◉</span>`;
-  if (normalized.includes("ros")) return `<span class="brand-mark ros">•••</span>`;
   if (normalized.includes("lidar")) return icon("database");
-  if (normalized.includes("camera") || normalized.includes("realsense")) return icon("camera");
-  if (normalized.includes("docker")) return `<span class="brand-mark docker">▰</span>`;
-  if (normalized.includes("gazebo")) return icon("cube");
-  if (normalized.includes("llm")) return icon("brain");
+  if (normalized.includes("camera")) return icon("camera");
   if (normalized.includes("graph")) return icon("graph");
-  if (normalized.includes("fastapi")) return `<span class="brand-mark fastapi">⚡</span>`;
-  if (normalized.includes("vue")) return `<span class="brand-mark vue">V</span>`;
-  if (normalized.includes("sql") || normalized.includes("dataset")) return icon("database");
-  if (normalized.includes("telegram")) return icon("telegram");
-  if (normalized.includes("notion")) return icon("notion");
+  if (normalized.includes("dataset")) return icon("database");
   if (normalized.includes("kanban")) return icon("kanban");
-  if (normalized.includes("arduino")) return `<span class="brand-mark arduino">∞</span>`;
-  if (normalized.includes("raspberry")) return `<span class="brand-mark berry">●</span>`;
-  if (normalized.includes("mujoco")) return `<span class="brand-mark mujoco">M</span>`;
+  if (normalized.includes("stt")) return icon("brain");
   if (normalized.includes("rl")) return icon("brain");
   if (normalized.includes("checkpoint")) return icon("database");
   if (normalized.includes("test")) return icon("flask");
-  if (normalized.includes("yolo") || normalized.includes("segformer")) return icon("cube");
-  if (normalized.includes("control") || normalized.includes("pid") || normalized.includes("ackermann")) return icon("steering");
-  if (normalized.includes("cloud")) return icon("cloud");
+  if (normalized.includes("pid") || normalized.includes("ackermann") || normalized.includes("control")) return icon("steering");
   if (normalized.includes("cron")) return icon("clock");
   if (normalized.includes("dashboard")) return icon("dashboard");
   return icon("code");
