@@ -570,15 +570,39 @@ function renderProjectPage(page) {
 
 function renderHome() {
   const cards = [
-    ["/resume", "Resume", "문제 정의와 구현 경험을 한 문서로 정리한 이력서", "document"],
-    ["/ai", "AI", "관계 연결·문제 재정의·운영 고도화로 설계한 AI 시스템", "brain"],
-    ["/robotics", "Robotics", "인식·제어·실험을 실제 동작으로 이어 붙인 로봇 프로젝트", "orchestrator"],
-    ["/autonomous-driving", "Autonomous Driving", "주행 모드·제어 경계·실행 환경을 나눈 자율주행 작업", "car"],
+    {
+      href: "/resume",
+      title: "Resume",
+      text: "문제 정의와 구현 경험을 한 문서로 정리한 이력서",
+      imageSrc: "./public/assets/hub/resume-career-desk.jpg",
+      imageAlt: "이력과 성장 계획을 상징하는 커리어 데스크",
+    },
+    {
+      href: "/ai",
+      title: "AI",
+      text: "관계 연결·문제 재정의·운영 고도화로 설계한 AI 시스템",
+      imageSrc: "./public/assets/hub/ai-workflow.jpg",
+      imageAlt: "AI 시스템이 채용·역량·질문·경험 정보를 연결하는 일러스트",
+    },
+    {
+      href: "/robotics",
+      title: "Robotics",
+      text: "인식·제어·실험을 실제 동작으로 이어 붙인 로봇 프로젝트",
+      imageSrc: "./public/assets/hub/robotics-apple-arm.jpg",
+      imageAlt: "사과를 집는 이동형 로봇 팔 작업 장면",
+    },
+    {
+      href: "/autonomous-driving",
+      title: "Autonomous Driving",
+      text: "주행 모드·제어 경계·실행 환경을 나눈 자율주행 작업",
+      imageSrc: "./public/assets/hub/autonomous-sensing.jpg",
+      imageAlt: "교차로 중앙 차량과 주변 센서 영역을 표현한 자율주행 이미지",
+    },
   ];
   return `<div class="site-shell home-shell">${siteHeader("home")}<main id="main" class="home-main">
     <section class="home-hero"><div class="home-copy"><p class="eyebrow">JEON HOJUN · PORTFOLIO</p><h1>AI·로보틱스·자율주행을 구현하는 신입 엔지니어, 전호준</h1><p>문제를 작게 나누고, 판단 경계를 설계하고, 실제 실행 흐름까지 연결한 프로젝트를 모았습니다.</p><div class="identity-line"><strong>전호준</strong><span>AI systems · Robotics · Autonomous driving</span></div><div class="home-actions"><a class="primary-button" href="/resume">이력서 보기 <span>→</span></a><a class="secondary-button" href="#work">프로젝트 탐색 <span>↓</span></a></div></div>
-    <div class="home-portrait" aria-label="전호준 엔지니어 프로필을 상징하는 그래픽"><div class="portrait-grid"></div><span class="portrait-initial">JH</span><p>AI · Robotics · Autonomous</p></div></section>
-    <section class="home-work" id="work"><p class="eyebrow">작업 트랙</p><div class="home-card-grid">${cards.map(([href, title, text, iconName]) => `<a href="${href}" class="home-card"><span>${icon(iconName)}</span><h2>${title}</h2><p>${text}</p><b>탐색하기 →</b></a>`).join("")}</div></section>
+    </section>
+    <section class="home-work" id="work"><p class="eyebrow">작업 트랙</p><div class="home-card-grid">${cards.map(({ href, title, text, imageSrc, imageAlt }) => `<a href="${href}" class="home-card"><figure class="home-card-media"><img src="${imageSrc}" alt="${imageAlt}" loading="lazy" decoding="async" /></figure><h2>${title}</h2><p>${text}</p><b>탐색하기 →</b></a>`).join("")}</div></section>
     </main>${siteFooter("home")}</div>`;
 }
 
