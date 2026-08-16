@@ -1110,7 +1110,9 @@ svg {
    -------------------------------------------------------------------------- */
 .pathfinder-grid {
   display: grid;
-  grid-template-columns: 1fr 1.03fr 2.1fr;
+  /* Keep each decision artifact on its own readable measure. The previous
+     three-track board made the 01/02 visuals too narrow at desktop widths. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--module-gap);
 }
 
@@ -3681,18 +3683,19 @@ svg {
     margin-bottom: 18px;
   }
 
-  /* PathFinder board: the three decision cards share one 360px row. */
+  /* PathFinder board: stack 01, 02, then the full-width signature artifact so
+     each generated visual has enough room to be read at desktop widths. */
   .project-pathfinder .pathfinder-grid {
-    height: 360px;
+    height: auto;
     align-items: stretch;
   }
 
   .project-pathfinder .numbered-story,
   .project-pathfinder .signature-card {
-    height: 360px;
+    height: auto;
     min-height: 0;
-    padding: 14px;
-    overflow: hidden;
+    padding: 18px;
+    overflow: visible;
   }
 
   .project-pathfinder .story-head {
@@ -3700,12 +3703,12 @@ svg {
   }
 
   .project-pathfinder .numbered-story h4 {
-    min-height: 65px;
-    margin-bottom: 8px;
+    min-height: 0;
+    margin-bottom: 12px;
   }
 
   .project-pathfinder .numbered-story > p {
-    min-height: 54px;
+    min-height: 0;
   }
 
   .project-pathfinder .disconnected-visual,
