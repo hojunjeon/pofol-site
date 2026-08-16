@@ -3341,7 +3341,7 @@ svg {
     display: grid;
     grid-template-columns: 205px 250px minmax(0, 1fr);
     gap: 14px;
-    align-items: start;
+    align-items: stretch;
     align-content: start;
     grid-auto-rows: max-content;
   }
@@ -3355,7 +3355,7 @@ svg {
     grid-column: 1;
     grid-row: 2;
     display: block;
-    align-self: start;
+    align-self: stretch;
     min-height: 0;
     padding: 20px;
   }
@@ -3376,8 +3376,8 @@ svg {
     grid-template-columns: 1fr;
     gap: 12px;
     margin: 0;
-    align-self: start;
-    align-content: start;
+    align-self: stretch;
+    align-content: stretch;
   }
 
   .ros2-strategy .ros-steps li {
@@ -3385,7 +3385,7 @@ svg {
     min-height: 0;
     grid-template-columns: 32px 1fr 32px;
     align-items: start;
-    padding: 15px;
+    padding: 20px;
   }
 
   .ros2-strategy .ros-steps li .step-icon {
@@ -3408,7 +3408,7 @@ svg {
   .ros2-strategy > .ros-architecture {
     grid-column: 3;
     grid-row: 2;
-    align-self: start;
+    align-self: stretch;
     min-width: 0;
     min-height: 0;
     margin-top: 0;
@@ -3877,7 +3877,7 @@ svg {
   .project-ros2 .ros-lead,
   .project-ros2 .ros-steps,
   .project-ros2 .ros-architecture {
-    align-self: start;
+    align-self: stretch;
     min-height: 0;
     height: auto;
   }
