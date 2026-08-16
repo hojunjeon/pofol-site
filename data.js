@@ -56,7 +56,9 @@ export const projects = {
       },
       artifact: {
         label: "signature artifact · mode routing",
-        text: "입력은 달라도 같은 주행 계약으로 합류하는 세 가지 모드",
+        text: "점자블록·일반 보도·장애물 모드가 각자의 판단을 거쳐 하나의 주행 계약으로 합류합니다.",
+        src: strategyMedia("ggeolgeol-mode-routing-v2"),
+        alt: "세 가지 주행 모드의 경로가 하나의 안전한 주행 계약으로 합류하는 개념 이미지",
       },
       modes: [
         { index: "01", title: "점자블록 주행", text: "점자블록을 따라 옆으로 offset 경로를 유지하며 순찰합니다.", src: strategyMedia("ggeolgeol-mode-tactile") },

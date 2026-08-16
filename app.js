@@ -381,7 +381,7 @@ function renderDevelopmentStrategy(project) {
         <div class="routing-artifact">
           ${renderSectionLabel(s.artifact.label)}
           <p>${s.artifact.text}</p>
-          <div class="routing-symbol" aria-hidden="true"><span></span><span></span></div>
+          <img class="routing-artifact-image" src="${s.artifact.src}" alt="${s.artifact.alt}" loading="lazy" decoding="async" />
         </div>
       </article>
     </div>
