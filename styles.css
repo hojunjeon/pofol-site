@@ -1110,9 +1110,9 @@ svg {
    -------------------------------------------------------------------------- */
 .pathfinder-grid {
   display: grid;
-  /* Keep each decision artifact on its own readable measure. The previous
-     three-track board made the 01/02 visuals too narrow at desktop widths. */
-  grid-template-columns: minmax(0, 1fr);
+  /* Give 01 and 02 a shared first row, then let the signature artifact use
+     the full second row so all three visuals remain easy to read. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--module-gap);
 }
 
@@ -1120,6 +1120,10 @@ svg {
 .signature-card {
   min-width: 0;
   padding: 18px;
+}
+
+.pathfinder-grid .signature-card {
+  grid-column: 1 / -1;
 }
 
 .story-head {
@@ -3743,8 +3747,8 @@ svg {
     margin-bottom: 18px;
   }
 
-  /* PathFinder board: stack 01, 02, then the full-width signature artifact so
-     each generated visual has enough room to be read at desktop widths. */
+  /* PathFinder board: 01 and 02 share the first row, while the signature
+     artifact spans the second row at desktop widths. */
   .project-pathfinder .pathfinder-grid {
     height: auto;
     align-items: stretch;
