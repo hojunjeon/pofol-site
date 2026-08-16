@@ -3234,10 +3234,14 @@ svg {
     min-height: 92px;
   }
 
-  /* Apple: stop min-content expansion from turning Korean into a totem pole. */
+  /* Apple desktop: keep the problem card on row one and the three
+     system-change cards together on row two. */
   .apple-top-grid {
-    grid-template-columns: 278px minmax(0, 1fr);
-    grid-template-areas: "issue changes";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "issue"
+      "changes";
   }
 
   .apple-issue {
@@ -3820,7 +3824,11 @@ svg {
   }
 
   /* Apple troubleshooting cards and the six-stage evidence strip are taller. */
-  .project-apple .apple-top-grid,
+  .project-apple .apple-top-grid {
+    height: auto;
+    min-height: 0;
+  }
+
   .project-apple .apple-issue,
   .project-apple .apple-changes,
   .project-apple .change-card {
