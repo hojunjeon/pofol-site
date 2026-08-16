@@ -1484,7 +1484,99 @@ svg {
   color: var(--green);
 }
 
-.parking-pipeline .pipeline-unit {
+.parking-artifact {
+  padding: 14px 18px 16px;
+}
+
+.parking-pipeline-reference {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.parking-pipeline-title {
+  margin: 0 0 9px;
+  color: var(--blue);
+  font-size: calc(var(--base-font-size) * .72);
+  font-weight: 850;
+  line-height: 1.3;
+}
+
+.parking-pipeline-row {
+  display: grid;
+  grid-template-columns: minmax(108px, .95fr) 24px minmax(250px, 2.15fr) 24px minmax(108px, .95fr) 24px minmax(124px, 1.08fr);
+  align-items: center;
+  min-width: 0;
+}
+
+.parking-pipeline-step,
+.parking-parallel {
+  min-width: 0;
+}
+
+.parking-pipeline-step {
+  display: flex;
+  align-items: stretch;
+}
+
+.parking-pipeline-step .pipeline-unit {
+  width: 100%;
+}
+
+.parking-pipeline-arrow {
+  display: grid;
+  width: 24px;
+  min-width: 24px;
+  place-items: center;
+  color: #5877ae;
+}
+
+.parking-pipeline-arrow .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.parking-parallel {
+  display: grid;
+  gap: 5px;
+  align-self: stretch;
+}
+
+.parking-parallel-label {
+  display: block;
+  color: var(--blue);
+  font-size: calc(var(--base-font-size) * .66);
+  font-weight: 850;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.parking-parallel-group {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 6px;
+  min-width: 0;
+  padding: 7px;
+  border: 1px dashed #b7c7df;
+  border-radius: 9px;
+  background: #fbfcff;
+}
+
+.parking-parallel-group .pipeline-unit {
+  min-width: 0;
+}
+
+.parking-parallel-divider {
+  display: grid;
+  place-items: center;
+  color: #6d82a6;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.parking-pipeline-reference .pipeline-unit {
   min-height: 115px;
 }
 
@@ -2767,6 +2859,16 @@ svg {
   .resume-project figure {
     grid-column: 2;
   }
+
+  .parking-pipeline-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .parking-pipeline-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
 }
 
 @media (max-width: 640px) {
@@ -2903,6 +3005,16 @@ svg {
   .pipeline-arrow {
     width: auto;
     height: 25px;
+    transform: rotate(90deg);
+  }
+
+  .parking-parallel-group {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .parking-parallel-divider {
+    min-height: 15px;
     transform: rotate(90deg);
   }
 
@@ -3512,18 +3624,6 @@ svg {
 
   .parking-effects .effect-list li {
     font-size: 10px;
-  }
-
-  .project-parking .parking-artifact {
-    padding: 14px 18px 16px;
-  }
-
-  .project-parking .parking-artifact .artifact-heading {
-    margin-bottom: 9px;
-  }
-
-  .project-parking .parking-artifact .artifact-heading p {
-    display: none;
   }
 
   .project-parking .parking-pipeline .pipeline-unit {

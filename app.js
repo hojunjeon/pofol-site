@@ -329,6 +329,36 @@ function renderPipeline(items, { dark = false, compact = false, className = "" }
   </div>`;
 }
 
+function renderParkingPipeline(items) {
+  const [input, segformer, yolov11, fusion, final] = items;
+  const renderUnit = ([title, subtitle, iconName, imageSrc]) => `<article class="pipeline-unit ${imageSrc ? "has-image" : ""}">
+    ${imageSrc ? `<img src="${imageSrc}" alt="${title} 개념 시각화 · 생성 이미지" loading="lazy" decoding="async" />` : `<span class="pipeline-icon">${icon(iconName)}</span>`}
+    <strong>${title}</strong>
+    <span>${subtitle}</span>
+  </article>`;
+  const renderArrow = () => `<span class="parking-pipeline-arrow" aria-hidden="true">${icon("convert")}</span>`;
+
+  return `<div class="parking-pipeline parking-pipeline-reference" role="group" aria-label="${items.map((item) => item[0]).join("에서 ")}">
+    <p class="parking-pipeline-title">시그니처 파이프라인</p>
+    <div class="parking-pipeline-row">
+      <div class="parking-pipeline-step">${renderUnit(input)}</div>
+      ${renderArrow()}
+      <div class="parking-parallel">
+        <span class="parking-parallel-label">병렬 처리</span>
+        <div class="parking-parallel-group">
+          ${renderUnit(segformer)}
+          <span class="parking-parallel-divider" aria-hidden="true">Ⅱ</span>
+          ${renderUnit(yolov11)}
+        </div>
+      </div>
+      ${renderArrow()}
+      <div class="parking-pipeline-step">${renderUnit(fusion)}</div>
+      ${renderArrow()}
+      <div class="parking-pipeline-step">${renderUnit(final)}</div>
+    </div>
+  </div>`;
+}
+
 function renderDevelopmentStrategy(project) {
   const s = project.strategy;
   return `<section class="strategy-section strategy-development" id="${project.slug}-strategy" aria-labelledby="${project.slug}-strategy-title">
@@ -442,8 +472,7 @@ function renderParkingStrategy(project) {
       </article>
     </div>
     <article class="artifact-panel parking-artifact card-soft">
-      <div class="artifact-heading"><span>${icon("layers")}</span><div>${renderSectionLabel("시그니처 아티팩트 · hybrid pipeline")}<p>영역과 객체를 병렬로 판단하고 우선순위 규칙으로 합쳐 최종 장면을 만듭니다.</p></div></div>
-      ${renderPipeline(s.pipeline, { compact: true, className: "parking-pipeline" })}
+      ${renderParkingPipeline(s.pipeline)}
     </article>
   </section>`;
 }
