@@ -1684,7 +1684,7 @@ svg {
 }
 
 .stage-card {
-  min-height: 224px;
+  min-height: 0;
   padding: 18px;
 }
 
