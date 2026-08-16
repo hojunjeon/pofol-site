@@ -579,7 +579,6 @@ function renderAppleStrategy(project) {
       </div>
     </div>
     <article class="scenario-panel card-soft">
-      <div class="artifact-heading"><span>${icon("route")}</span><div>${renderSectionLabel("시그니처 아티팩트 · perception to action")}<p>과수원 인식부터 수확·분류까지 실제 제어 경계를 여섯 단계로 연결했습니다.</p></div></div>
       <ol class="scenario-strip">${s.scenarios.map(([index, title, src]) => `<li><div><span>${index}</span><strong>${title}</strong></div><img src="${src}" alt="${title} 개념 시각화 · 생성 이미지" loading="lazy" decoding="async" width="1672" height="941" /></li>`).join("")}</ol>
     </article>
   </section>`;

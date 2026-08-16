@@ -3240,9 +3240,15 @@ svg {
   /* Apple: stop min-content expansion from turning Korean into a totem pole. */
   .apple-top-grid {
     grid-template-columns: 278px minmax(0, 1fr);
+    grid-template-areas: "issue changes";
+  }
+
+  .apple-issue {
+    grid-area: issue;
   }
 
   .apple-changes {
+    grid-area: changes;
     min-width: 0;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -3639,15 +3645,6 @@ svg {
     padding: 0;
     border: 0;
     box-shadow: none;
-  }
-
-  .project-apple .scenario-panel .artifact-heading {
-    margin-bottom: 9px;
-  }
-
-  .project-apple .scenario-panel .artifact-heading > span,
-  .project-apple .scenario-panel .artifact-heading p {
-    display: none;
   }
 
   .project-apple .scenario-strip {
