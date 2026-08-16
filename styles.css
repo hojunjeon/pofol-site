@@ -1508,6 +1508,17 @@ svg {
   width: 100%;
 }
 
+.parking-pipeline-reference .pipeline-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 8px;
+}
+
+.parking-pipeline-reference .pipeline-icon .icon {
+  width: 28px;
+  height: 28px;
+}
+
 .parking-pipeline-arrow {
   display: grid;
   width: 24px;
@@ -1517,8 +1528,8 @@ svg {
 }
 
 .parking-pipeline-arrow .icon {
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
 }
 
 .parking-parallel {

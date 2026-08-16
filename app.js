@@ -120,6 +120,7 @@ function icon(name, className = "") {
     flag: `<path d="M5 21V4M5 5h10l-2 4 2 4H5"/>`,
     vision: `<path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>`,
     convert: `<path d="M4 8h12M13 5l3 3-3 3M20 16H8M11 13l-3 3 3 3"/>`,
+    arrowRight: `<path d="M4 12h15M14 7l5 5-5 5"/>`,
     clipboard: `<path d="M8 4h8v3H8z"/><rect x="5" y="6" width="14" height="15" rx="2"/><path d="m8 13 2 2 5-5"/>`,
     code: `<path d="m8 6-5 6 5 6M16 6l5 6-5 6M14 4l-4 16"/>`,
     link: `<path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/>`,
@@ -336,7 +337,7 @@ function renderParkingPipeline(items) {
     <strong>${title}</strong>
     <span>${subtitle}</span>
   </article>`;
-  const renderArrow = () => `<span class="parking-pipeline-arrow" aria-hidden="true">${icon("convert")}</span>`;
+  const renderArrow = () => `<span class="parking-pipeline-arrow" aria-hidden="true">${icon("arrowRight")}</span>`;
 
   return `<div class="parking-pipeline parking-pipeline-reference" role="group" aria-label="${items.map((item) => item[0]).join("에서 ")}">
     <p class="parking-pipeline-title">시그니처 파이프라인</p>
