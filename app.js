@@ -493,7 +493,6 @@ function renderCompetitionStrategy(project) {
       ${s.missions.map(([title, text, iconName]) => `<article><span>${icon(iconName)}</span><h4>${title}</h4><p>${text}</p></article>`).join("")}
     </div>
     <article class="artifact-panel card-soft">
-      <div class="artifact-heading"><span>${icon("convert")}</span><div>${renderSectionLabel("센서 인식에서 차량 구동까지")}<p>내 역할은 인식 결과를 차량이 실행할 수 있는 속도·조향 명령으로 바꾸는 제어 경계였습니다.</p></div></div>
       ${renderGeneratedVisual("competition", "competition-strategy-visual")}
     </article>
   </section>`;
@@ -587,7 +586,6 @@ function renderAppleStrategy(project) {
 
 function renderRos2Architecture(s) {
   return `<article class="ros-architecture card-soft">
-    <div class="artifact-heading"><span>${icon("graph")}</span><div>${renderSectionLabel("검증 가능한 ROS2 node architecture")}<p>센서 입력과 기능 노드를 namespace로 분리하고 Drive_Bot의 Ackermann 출력까지 한 방향으로 연결했습니다.</p></div></div>
     ${renderGeneratedVisual("ros2", "ros2-strategy-visual")}
     <div class="scenario-tags"><small>시나리오 단위 검증</small>${s.architecture.scenarios.map((item) => `<span>${icon("check")}${item}</span>`).join("")}</div>
   </article>`;

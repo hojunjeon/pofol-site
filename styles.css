@@ -3341,7 +3341,9 @@ svg {
     display: grid;
     grid-template-columns: 205px 250px minmax(0, 1fr);
     gap: 14px;
-    align-items: stretch;
+    align-items: start;
+    align-content: start;
+    grid-auto-rows: max-content;
   }
 
   .ros2-strategy > .strategy-title {
@@ -3353,7 +3355,8 @@ svg {
     grid-column: 1;
     grid-row: 2;
     display: block;
-    min-height: 418px;
+    align-self: start;
+    min-height: 0;
     padding: 20px;
   }
 
@@ -3373,6 +3376,8 @@ svg {
     grid-template-columns: 1fr;
     gap: 12px;
     margin: 0;
+    align-self: start;
+    align-content: start;
   }
 
   .ros2-strategy .ros-steps li {
@@ -3403,8 +3408,9 @@ svg {
   .ros2-strategy > .ros-architecture {
     grid-column: 3;
     grid-row: 2;
+    align-self: start;
     min-width: 0;
-    min-height: 418px;
+    min-height: 0;
     margin-top: 0;
     padding: 16px;
   }
@@ -3871,8 +3877,9 @@ svg {
   .project-ros2 .ros-lead,
   .project-ros2 .ros-steps,
   .project-ros2 .ros-architecture {
-    min-height: 410px;
-    height: 410px;
+    align-self: start;
+    min-height: 0;
+    height: auto;
   }
 
   /* Board-specific bottom trim. It changes only whitespace below the stack. */
