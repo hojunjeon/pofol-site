@@ -10,11 +10,11 @@ const generatedStrategyVisuals = {
     alt: "PathFinder가 분리된 입력을 GraphRAG 관계와 필드 검증을 거쳐 면접 준비 로드맵으로 연결하는 개념 시각화",
   },
   pathfinderBefore: {
-    src: "./public/assets/generated/strategy/pathfinder-before.png",
+    src: "./public/assets/generated/strategy/pathfinder-before-v2.png",
     alt: "PathFinder 도입 전 공고·이력·자소서가 분리되어 일반적인 조언으로 흩어지는 개념 시각화",
   },
   pathfinderAfter: {
-    src: "./public/assets/generated/strategy/pathfinder-after.png",
+    src: "./public/assets/generated/strategy/pathfinder-after-v2.png",
     alt: "PathFinder 도입 후 기업·직무·역량·경험 관계가 검증된 면접 준비 순서로 수렴하는 개념 시각화",
   },
   aegis: {
