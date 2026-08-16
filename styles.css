@@ -1583,51 +1583,18 @@ svg {
    -------------------------------------------------------------------------- */
 .hermes-stage-grid {
   display: grid;
-  grid-template-columns: 1.25fr repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
-.operations-lead,
 .stage-card {
   min-height: 224px;
   padding: 18px;
 }
 
-.operations-lead {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.operations-lead .strategy-kicker,
 .stage-card .strategy-kicker {
   color: #80b4ff;
 }
-
-.operations-lead h4 {
-  margin-top: 16px;
-  color: #fff;
-  font-size: calc(var(--base-font-size) * 1.04);
-  line-height: 1.68;
-}
-
-.lead-bars {
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  height: 30px;
-  margin-bottom: 14px;
-}
-
-.lead-bars i {
-  width: 4px;
-  border: 1px solid #3282ff;
-  border-radius: 2px;
-}
-
-.lead-bars i:nth-child(1) { height: 16px; }
-.lead-bars i:nth-child(2) { height: 29px; }
-.lead-bars i:nth-child(3) { height: 22px; }
 
 .stage-card .number-badge {
   margin-bottom: 17px;
@@ -2787,10 +2754,6 @@ svg {
 
   .hermes-stage-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hermes-stage-grid .operations-lead {
-    grid-column: 1 / -1;
   }
 
   .home-hero {

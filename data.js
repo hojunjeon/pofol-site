@@ -207,7 +207,6 @@ export const projects = {
     type: "operations",
     layout: "hermes",
     strategy: {
-      lead: { label: "전개 단계", title: "깨진 실행 순서를 Kanban과 Honcho로 고정하고, Recording Harness로 Notion 기록까지 연결했습니다." },
       stages: [
         { index: "01", label: "문제 포착", title: "planner · executor 순서 충돌", text: "작업 시작과 실행이 뒤섞이며 중복·누락 발생" },
         { index: "02", label: "상태 통제", title: "Kanban으로 완료 조건 고정", text: "진행·차단·완료 상태로 순서와 책임을 명확화" },

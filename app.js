@@ -481,11 +481,9 @@ function renderHermesStrategy(project) {
   return `<section class="strategy-section strategy-operations hermes-strategy" id="${project.slug}-strategy" aria-labelledby="${project.slug}-strategy-title">
     <h3 class="strategy-title" id="${project.slug}-strategy-title">전개 · 핵심 판단</h3>
     <div class="hermes-stage-grid">
-      <article class="operations-lead dark-card"><span class="lead-bars" aria-hidden="true"><i></i><i></i><i></i></span>${renderSectionLabel(s.lead.label)}<h4>${s.lead.title}</h4></article>
       ${s.stages.map((stage) => `<article class="stage-card dark-card"><span class="number-badge">${stage.index}</span>${renderSectionLabel(stage.label)}<h4>${stage.title}</h4><p>${stage.text}</p></article>`).join("")}
     </div>
     <article class="dark-flow-panel">
-      <div class="dark-panel-title"><span>${icon("document")}</span><strong>운영 계약</strong></div>
       ${renderGeneratedVisual("hermes", "hermes-strategy-visual")}
     </article>
   </section>`;
