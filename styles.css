@@ -2420,6 +2420,29 @@ svg {
   padding: 82px 0 62px;
 }
 
+.resume-hero-main {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(22px, 4vw, 48px);
+  min-width: 0;
+}
+
+.resume-profile-photo {
+  flex: 0 0 clamp(144px, 17vw, 196px);
+  width: clamp(144px, 17vw, 196px);
+  height: auto;
+  aspect-ratio: 3 / 4;
+  border: 1px solid rgba(19, 45, 84, .13);
+  border-radius: 16px;
+  background: #fff;
+  object-fit: cover;
+  object-position: 50% 32%;
+}
+
+.resume-hero-copy {
+  min-width: 0;
+}
+
 .resume-hero h1 {
   margin: 10px 0 12px;
   font-size: 68px;
@@ -2427,13 +2450,13 @@ svg {
   letter-spacing: -.06em;
 }
 
-.resume-hero > div > p:not(.eyebrow) {
+.resume-hero-copy > p:not(.eyebrow) {
   max-width: 640px;
   color: #536078;
   font-size: 17px;
 }
 
-.resume-hero > div > ul {
+.resume-hero-copy > ul {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -2442,7 +2465,7 @@ svg {
   list-style: none;
 }
 
-.resume-hero > div > ul li {
+.resume-hero-copy > ul li {
   padding: 7px 11px;
   color: var(--blue);
   border-radius: 999px;
@@ -3057,12 +3080,34 @@ svg {
     font-size: 54px;
   }
 
+  .resume-hero-main {
+    gap: 18px;
+  }
+
+  .resume-profile-photo {
+    flex-basis: 128px;
+    width: 128px;
+  }
+
   .resume-project {
     grid-template-columns: 1fr;
   }
 
   .resume-project figure {
     grid-column: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .resume-hero-main {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .resume-profile-photo {
+    width: 96px;
+    flex-basis: auto;
   }
 }
 
