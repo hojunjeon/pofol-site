@@ -3835,7 +3835,11 @@ svg {
     min-height: 0;
   }
 
-  .project-apple .apple-issue,
+  .project-apple .apple-issue {
+    height: auto;
+    min-height: 0;
+  }
+
   .project-apple .apple-changes,
   .project-apple .change-card {
     height: 306px;
