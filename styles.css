@@ -127,9 +127,20 @@ svg {
 }
 
 .brand {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
   font-size: 13px;
   font-weight: 850;
   letter-spacing: .19em;
+}
+
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 8px;
 }
 
 .desktop-nav,

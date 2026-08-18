@@ -142,7 +142,10 @@ function siteHeader(current) {
   return `<header class="site-header">
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
     <div class="site-header-inner">
-      <a class="brand" href="/" aria-label="전호준 포트폴리오 홈">JEON HOJUN</a>
+      <a class="brand" href="/" aria-label="전호준 포트폴리오 홈">
+        <img class="brand-mark" src="./public/assets/icons/pathfinder-compass.svg?v=20260818-pathfinder-favicon" alt="" width="26" height="26" aria-hidden="true" />
+        <span>JEON HOJUN</span>
+      </a>
       <nav class="desktop-nav" aria-label="주요 페이지">
         ${routes.map((route) => `<a href="${route.href}" ${current === route.key ? 'aria-current="page"' : ""}>${route.label}</a>`).join("")}
       </nav>
