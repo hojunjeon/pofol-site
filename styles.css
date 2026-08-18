@@ -2531,6 +2531,7 @@ svg {
   margin: 0;
   font-size: 34px;
   letter-spacing: -.045em;
+  text-wrap: balance;
 }
 
 .skill-grid {
