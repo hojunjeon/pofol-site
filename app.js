@@ -691,39 +691,56 @@ function renderProjectPage(page) {
 function renderHome() {
   const cards = [
     {
-      href: "/resume",
-      title: "Resume",
-      text: "문제 정의와 구현 경험을 한 문서로 정리한 이력서",
-      imageSrc: "./public/assets/hub/resume-career-desk.jpg",
-      imageAlt: "이력과 성장 계획을 상징하는 커리어 데스크",
-    },
-    {
       href: "/ai",
       title: "AI",
-      text: "관계 연결·문제 재정의·운영 고도화로 설계한 AI 시스템",
+      keyword: "관계 연결 · 문제 재정의 · 운영 고도화",
       imageSrc: "./public/assets/hub/ai-workflow.jpg",
       imageAlt: "AI 시스템이 채용·역량·질문·경험 정보를 연결하는 일러스트",
     },
     {
       href: "/robotics",
       title: "Robotics",
-      text: "인식·제어·실험을 실제 동작으로 이어 붙인 로봇 프로젝트",
+      keyword: "인식 · 제어 · 실험",
       imageSrc: "./public/assets/hub/robotics-apple-arm.jpg",
       imageAlt: "사과를 집는 이동형 로봇 팔 작업 장면",
     },
     {
       href: "/autonomous-driving",
       title: "Autonomous Driving",
-      text: "주행 모드·제어 경계·실행 환경을 나눈 자율주행 작업",
+      keyword: "주행 모드 · 제어 경계 · 실행 환경",
       imageSrc: "./public/assets/hub/autonomous-sensing.jpg",
       imageAlt: "교차로 중앙 차량과 주변 센서 영역을 표현한 자율주행 이미지",
     },
   ];
   return `<div class="site-shell home-shell">${siteHeader("home")}<main id="main" class="home-main">
-    <section class="home-hero"><div class="home-copy"><p class="eyebrow">JEON HOJUN · PORTFOLIO</p><h1>AI·로보틱스·자율주행을 구현하는 신입 엔지니어, 전호준</h1><p>문제를 작게 나누고, 판단 경계를 설계하고, 실제 실행 흐름까지 연결한 프로젝트를 모았습니다.</p><div class="identity-line"><strong>전호준</strong><span>AI systems · Robotics · Autonomous driving</span></div><div class="home-actions"><a class="primary-button" href="/resume">이력서 보기 <span>→</span></a><a class="secondary-button" href="#work">프로젝트 탐색 <span>↓</span></a></div></div>
+    <section class="home-hero" aria-label="소개">
+      <div class="hero-content">
+        <h1 class="hero-title">판단을 만들고,<br>현실을 움직입니다.</h1>
+        <p class="hero-identity">AI Systems · Robotics · Autonomous Driving</p>
+        <a href="/resume" class="cta-resume">이력서 보기 →</a>
+      </div>
+      <a href="/resume" class="hero-media-card" aria-label="이력서 페이지로 이동">
+        <img src="./public/assets/hub/resume-career-desk.jpg" alt="이력과 구현 경험을 상징하는 작업 데스크" loading="eager" decoding="async" fetchpriority="high" />
+      </a>
     </section>
-    <section class="home-work" id="work"><p class="eyebrow">작업 트랙</p><div class="home-card-grid">${cards.map(({ href, title, text, imageSrc, imageAlt }) => `<a href="${href}" class="home-card"><figure class="home-card-media"><img src="${imageSrc}" alt="${imageAlt}" loading="lazy" decoding="async" /></figure><h2>${title}</h2><p>${text}</p><b>탐색하기 →</b></a>`).join("")}</div></section>
-    </main>${siteFooter("home")}</div>`;
+    <section class="tracks-section" id="work" aria-label="작업 트랙">
+      <h2 class="tracks-heading">작업 트랙</h2>
+      <div class="tracks-grid">
+        ${cards.map(({ href, title, keyword, imageSrc, imageAlt }) => `<a href="${href}" class="track-card">
+          <div class="track-media">
+            <img src="${imageSrc}" alt="${imageAlt}" loading="lazy" decoding="async" />
+          </div>
+          <div class="track-body">
+            <div class="track-title-wrap">
+              <h3 class="track-title">${title}</h3>
+              <span class="track-arrow" aria-hidden="true">${icon("arrowRight")}</span>
+            </div>
+            <p class="track-keyword">${keyword}</p>
+          </div>
+        </a>`).join("")}
+      </div>
+    </section>
+  </main>${siteFooter("home")}</div>`;
 }
 
 const resumeProjectMedia = {
