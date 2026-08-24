@@ -484,23 +484,14 @@ export const projects = {
 export const pages = {
   ai: {
     key: "ai",
-    eyebrow: "AI Projects · Decisions over demos",
-    title: "모델을 늘리기보다, 판단의 경계를 다시 그렸습니다.",
-    lede: "PathFinder, Aegis, Hermes, 주차공간 탐지. 무엇이 막혔고 어떤 구조로 바꿨는지 전환점과 시각 증거를 함께 보여줍니다.",
     projects: ["pathfinder", "aegis", "hermes", "parking"],
   },
   robotics: {
     key: "robotics",
-    eyebrow: "Robotics · Perception to Control",
-    title: "감지한 장면을, 로봇의 다음 동작으로 연결합니다.",
-    lede: "사과 수확·분류 Edge AI 로봇과 강화학습 오케스트레이션에서 인식·제어·실험의 경계를 다르게 설계했습니다.",
     projects: ["apple", "rl"],
   },
   autonomous: {
     key: "autonomous",
-    eyebrow: "Autonomous Driving · Robot · Vehicle · Simulation",
-    title: "주행을 나누고 실행 조건을 고정했습니다.",
-    lede: "모드 라우팅, 차량 제어 역할, 실행 환경 고정이라는 서로 다른 판단을 프로젝트별 흐름으로 보여줍니다.",
     projects: ["ggeolgeol", "competition", "ros2"],
   },
 };

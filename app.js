@@ -650,18 +650,6 @@ function overviewType(project) {
   return labels[project.type];
 }
 
-function pageHero(page) {
-  const routeClass = page.key === "ai" ? "hero-blue" : page.key === "robotics" ? "hero-slate" : "hero-warm";
-  return `<section class="route-hero ${routeClass}">
-    <div class="route-hero-inner">
-      <p class="eyebrow">${page.eyebrow}</p>
-      <h1>${page.title}</h1>
-      <p>${page.lede}</p>
-      <a class="primary-button" href="#projects-overview">프로젝트 목록 보기 <span>↓</span></a>
-    </div>
-  </section>`;
-}
-
 function projectOverview(page) {
   return `<section class="project-index-section" id="projects-overview" aria-label="${page.key} 프로젝트 목록">
     <div class="project-index-list">
@@ -682,7 +670,7 @@ function renderProjectPage(page) {
   return `<div class="site-shell domain-${page.key}">
     ${siteHeader(page.key)}
     <main id="main">
-      ${pageHero(page)}
+      <h1 class="visually-hidden">${routes.find((route) => route.key === page.key)?.label || page.key} Projects</h1>
       ${projectOverview(page)}
       <div class="project-list">${page.projects.map((slug) => renderProjectDetail(projects[slug])).join("")}</div>
       ${relatedLinks(page.key)}
