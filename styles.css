@@ -4059,10 +4059,9 @@ svg {
   }
 }
 
-/* KeyFin: the page reads as "what the app is -> the decision -> one real
-   answer traced to its calculation receipt -> the engine -> results".
-   Every screen is a real app capture; the stage tint is shared by the hero
-   stage, the receipt stage and the twin flow so the section reads as one. */
+/* KeyFin: the app on three real screens, then one linear story:
+   LLM got the math wrong -> engine computes, LLM coaches -> the engine and
+   its accuracy -> the latency fix -> charts that show the result. */
 .project-keyfin {
   --kf-stage: #ecedf8;
   --kf-well: #f5f7fb;
@@ -4135,22 +4134,16 @@ svg {
 .project-keyfin .kf-screens {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto;
   gap: 0 26px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.project-keyfin .kf-screens:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 6px;
-  border-radius: 8px;
-}
-
 .project-keyfin .kf-screen {
   display: grid;
-  grid-row: span 3;
+  grid-row: span 2;
   grid-template-rows: subgrid;
   justify-items: center;
   min-width: 0;
@@ -4161,17 +4154,8 @@ svg {
   width: min(100%, 212px);
 }
 
-.project-keyfin .kf-room-legend {
-  grid-row: 2;
-  display: flex;
-  gap: 12px;
-  margin: 12px 0 0;
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .project-keyfin .kf-screen-copy {
-  grid-row: 3;
+  grid-row: 2;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 10px;
@@ -4202,15 +4186,6 @@ svg {
   line-height: 1.55;
 }
 
-.project-keyfin .kf-mine {
-  display: block;
-  margin-top: 7px;
-  color: var(--blue);
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 750;
-}
-
 /* Room states cross-fade: the first state is always painted, the other two
    fade over it, so the phone is never empty when motion is off. */
 .project-keyfin .kf-room-state {
@@ -4223,49 +4198,23 @@ svg {
   position: absolute;
   inset: 0;
   opacity: 0;
-  animation: kf-room-2 10s ease-in-out infinite;
+  animation: kf-room-2 4.8s ease-in-out infinite;
 }
 
 .project-keyfin .kf-room-3 { animation-name: kf-room-3; }
 
-.project-keyfin .kf-room-label { color: #5d6980; transition: color .2s; }
-.project-keyfin .kf-room-label-1 { color: var(--ink); animation: kf-label-1 10s ease-in-out infinite; }
-.project-keyfin .kf-room-label-2 { animation: kf-label-2 10s ease-in-out infinite; }
-.project-keyfin .kf-room-label-3 { animation: kf-label-3 10s ease-in-out infinite; }
-
-.project-keyfin .kf-screen:hover .kf-room-state,
-.project-keyfin .kf-screen:hover .kf-room-label {
-  animation-play-state: paused;
-}
+.project-keyfin .kf-screen:hover .kf-room-state { animation-play-state: paused; }
 
 @keyframes kf-room-2 {
-  0%, 31% { opacity: 0; }
-  34%, 64% { opacity: 1; }
-  66%, 100% { opacity: 0; }
+  0%, 28% { opacity: 0; }
+  33%, 72% { opacity: 1; }
+  73%, 100% { opacity: 0; }
 }
 
 @keyframes kf-room-3 {
-  0%, 64% { opacity: 0; }
-  66%, 97% { opacity: 1; }
+  0%, 62% { opacity: 0; }
+  67%, 95% { opacity: 1; }
   100% { opacity: 0; }
-}
-
-@keyframes kf-label-1 {
-  0%, 31% { color: var(--ink); }
-  33%, 96% { color: #5d6980; }
-  98%, 100% { color: var(--ink); }
-}
-
-@keyframes kf-label-2 {
-  0%, 31% { color: #5d6980; }
-  33%, 64% { color: var(--ink); }
-  66%, 100% { color: #5d6980; }
-}
-
-@keyframes kf-label-3 {
-  0%, 64% { color: #5d6980; }
-  66%, 96% { color: #c9303f; }
-  98%, 100% { color: #5d6980; }
 }
 
 /* ---- Strategy shared ---- */
@@ -4415,65 +4364,17 @@ svg {
   line-height: 1.5;
 }
 
-/* ---- 03 receipt ---- */
+/* ---- Module card ---- */
 .project-keyfin .kf-module {
   margin-top: 16px;
   padding: 22px 24px 24px;
 }
 
-.project-keyfin .kf-steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 0;
-  margin: 0 0 16px;
-  padding: 0;
-  list-style: none;
-}
-
-.project-keyfin .kf-steps li {
-  color: var(--kf-ink-2);
-  font-size: 13px;
-  font-weight: 750;
-}
-
-.project-keyfin .kf-steps li + li::before {
-  content: "→";
-  margin: 0 10px;
-  color: #7a869a;
-  font-weight: 500;
-}
-
-.project-keyfin .kf-receipt-stage {
-  display: grid;
-  grid-template-columns: 236px minmax(0, 480px);
-  justify-content: center;
-  gap: 48px;
-  align-items: start;
-  padding: 28px 34px;
-  border-radius: 12px;
-  background: var(--kf-stage);
-}
-
-.project-keyfin .kf-answer {
-  display: grid;
-  justify-items: center;
-  gap: 12px;
-  margin: 0;
-}
-
-.project-keyfin .kf-answer figcaption {
-  color: var(--kf-muted);
-  font-size: 12px;
-  font-weight: 650;
-}
-
 .project-keyfin .kf-phone-scroll .kf-phone-screen img {
-  animation: kf-scroll 18s ease-in-out infinite;
+  animation: kf-scroll 14s ease-in-out infinite;
 }
 
-.project-keyfin .kf-answer:hover .kf-phone-screen img {
-  animation-play-state: paused;
-}
+.project-keyfin .kf-answer:hover .kf-phone-screen img { animation-play-state: paused; }
 
 /* Screen box is 600x1247 of a 600x1813 capture: the travel is 31.2% of the
    image's own height, which holds at any rendered width. */
@@ -4483,148 +4384,12 @@ svg {
   94%, 100% { transform: translateY(0); }
 }
 
-.project-keyfin .kf-receipt {
-  --zz: 9px;
-  position: relative;
-  padding: 22px 26px calc(var(--zz) + 26px);
-  border-radius: 6px 6px 0 0;
-  background: #fff;
-  filter: drop-shadow(0 6px 7px rgba(26, 34, 90, .13));
-  -webkit-mask:
-    linear-gradient(#000 0 0) top / 100% calc(100% - var(--zz)) no-repeat,
-    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(var(--zz) * 2) var(--zz) repeat-x;
-  mask:
-    linear-gradient(#000 0 0) top / 100% calc(100% - var(--zz)) no-repeat,
-    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(var(--zz) * 2) var(--zz) repeat-x;
-}
-
-.project-keyfin .kf-receipt-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1.5px solid var(--ink);
-}
-
-.project-keyfin .kf-receipt-top strong {
-  color: var(--ink);
-  font-size: 16px;
-  font-weight: 850;
-}
-
-.project-keyfin .kf-receipt-top span {
-  color: var(--kf-muted);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.project-keyfin .kf-receipt-question {
-  padding: 14px 0 10px;
-  border-bottom: 1px solid #e3e7f0;
-}
-
-.project-keyfin .kf-receipt-question span,
-.project-keyfin .kf-receipt-divider span {
-  color: var(--kf-muted);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.project-keyfin .kf-receipt-question p {
-  margin: 4px 0 0;
-  color: var(--ink);
-  font-size: 14px;
-  font-weight: 650;
-  line-height: 1.55;
-}
-
-.project-keyfin .kf-receipt-rows {
-  margin: 0;
-  padding: 8px 0;
-}
-
-.project-keyfin .kf-receipt-rows div {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  padding: 5px 0;
-  font-size: 13.5px;
-}
-
-.project-keyfin .kf-receipt-rows dt { color: var(--kf-muted); }
-
-.project-keyfin .kf-receipt-rows dd {
-  margin: 0;
-  color: var(--ink);
-  font-weight: 700;
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-.project-keyfin .kf-receipt-results dd {
-  color: var(--blue);
-  font-weight: 850;
-}
-
-.project-keyfin .kf-receipt-divider {
-  margin: 0;
-  padding-top: 10px;
-  border-top: 1.5px dashed #c3cad8;
-}
-
-.project-keyfin .kf-receipt-checks {
-  display: grid;
-  gap: 7px;
-  margin: 6px 0 0;
-  padding: 14px 0 0;
-  border-top: 1.5px dashed #c3cad8;
-  list-style: none;
-}
-
-.project-keyfin .kf-receipt-checks li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--kf-ink-2);
-  font-size: 13px;
-  font-weight: 650;
-}
-
-.project-keyfin .kf-receipt-checks .icon {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  color: #13875d;
-  stroke-width: 2.4;
-}
-
-/* ---- 04 twin ---- */
+/* ---- 03 engine and accuracy ---- */
 .project-keyfin .kf-twin-grid {
   display: grid;
-  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
-  gap: 20px;
-  align-items: start;
-}
-
-.project-keyfin .kf-forecast {
-  display: grid;
-  gap: 10px;
-  margin: 0;
-}
-
-.project-keyfin .kf-forecast img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.project-keyfin .kf-forecast figcaption {
-  color: var(--kf-muted);
-  font-size: 12px;
-  font-weight: 650;
-  text-align: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
 }
 
 .project-keyfin .kf-twin-side {
@@ -4632,6 +4397,24 @@ svg {
   grid-template-rows: auto 1fr;
   gap: 12px;
   min-width: 0;
+}
+
+.project-keyfin .kf-accuracy {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.project-keyfin .kf-accuracy .kf-stat { padding: 0; background: none; }
+
+.project-keyfin .kf-accuracy > p {
+  margin: 0;
+  color: #4f5c72;
+  font-size: 13px;
+  line-height: 1.55;
 }
 
 .project-keyfin .kf-twin-io {
@@ -4670,7 +4453,7 @@ svg {
 .project-keyfin .kf-compare {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 14px;
   margin: 0;
   padding: 18px 20px;
@@ -4747,20 +4530,10 @@ svg {
 
 .project-keyfin .kf-compare .is-picked .kf-compare-bar { background: var(--blue); }
 
-/* ---- 05 results ---- */
-.project-keyfin .kf-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 4px 0 16px;
-}
-
+/* ---- Stat (label + before -> after) ---- */
 .project-keyfin .kf-stat {
   display: grid;
-  grid-template-rows: auto auto 1fr;
-  padding: 16px 18px 18px;
-  border-radius: 10px;
-  background: var(--kf-well);
+  gap: 6px;
 }
 
 .project-keyfin .kf-stat p { margin: 0; }
@@ -4776,7 +4549,6 @@ svg {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 4px 10px;
-  margin: 8px 0 10px !important;
 }
 
 .project-keyfin .kf-stat-value span:first-child {
@@ -4799,10 +4571,88 @@ svg {
   letter-spacing: 0;
 }
 
-.project-keyfin .kf-stat-text {
+/* ---- 04 latency fix ---- */
+.project-keyfin .kf-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.project-keyfin .kf-point {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 6px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: var(--kf-well);
+}
+
+.project-keyfin .kf-point h5 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.project-keyfin .kf-point > p {
+  margin: 0 0 8px;
   color: #4f5c72;
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.55;
+}
+
+.project-keyfin .kf-point .kf-stat {
+  padding-top: 12px;
+  border-top: 1px solid #e3e7f0;
+}
+
+/* ---- 05 results ---- */
+.project-keyfin .kf-showcase {
+  display: grid;
+  grid-template-columns: 236px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+  margin-top: 16px;
+  padding: 28px 34px;
+  border-radius: 12px;
+  background: var(--kf-stage);
+}
+
+.project-keyfin .kf-answer,
+.project-keyfin .kf-forecast {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.project-keyfin .kf-forecast img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-keyfin .kf-showcase figcaption strong {
+  display: block;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.project-keyfin .kf-showcase figcaption span {
+  display: block;
+  margin-top: 3px;
+  color: #4f5c72;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.project-keyfin .kf-closing {
+  margin: 20px 0 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.65;
 }
 
 .project-keyfin .kf-latency {
@@ -4890,13 +4740,6 @@ svg {
 .project-keyfin .kf-bar { transition: opacity .15s; }
 .project-keyfin .kf-group:hover .kf-bar { opacity: .82; }
 
-.project-keyfin .kf-footnote {
-  margin: 12px 0 0;
-  color: var(--kf-muted);
-  font-size: 12.5px;
-  line-height: 1.55;
-}
-
 /* ---- Tablet ---- */
 @media (max-width: 900px) {
   /* ga-best.css pins the paper gutter at its desktop value; restore the
@@ -4919,12 +4762,7 @@ svg {
   .project-keyfin .kf-chart-mid { display: block !important; }
   .project-keyfin .kf-screens { gap: 0 16px; }
   .project-keyfin .kf-twin-grid { grid-template-columns: 1fr; }
-  .project-keyfin .kf-forecast { justify-self: center; width: min(100%, 602px); }
-  .project-keyfin .kf-receipt-stage {
-    grid-template-columns: 200px minmax(0, 1fr);
-    gap: 22px;
-    padding: 22px;
-  }
+  .project-keyfin .kf-showcase { grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px; }
 }
 
 /* ---- Phone ---- */
@@ -4966,18 +4804,13 @@ svg {
   .project-keyfin .kf-roles li { grid-template-columns: 96px minmax(0, 1fr); }
   .project-keyfin .kf-module { padding: 18px 16px 18px; }
 
-  .project-keyfin .kf-receipt-stage {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 20px 14px;
-  }
-
+  .project-keyfin .kf-showcase { grid-template-columns: 1fr; gap: 24px; padding: 20px 14px; }
+  .project-keyfin .kf-answer { justify-items: center; }
   .project-keyfin .kf-answer .kf-phone { width: min(100%, 220px); }
-  .project-keyfin .kf-receipt { max-width: none; padding: 18px 16px calc(var(--zz) + 22px); }
+  .project-keyfin .kf-points { grid-template-columns: 1fr; }
 
   .project-keyfin .kf-twin-io { padding: 2px 14px; }
   .project-keyfin .kf-compare { padding: 16px 14px; }
-  .project-keyfin .kf-stats { grid-template-columns: 1fr; }
   .project-keyfin .kf-latency { padding: 16px 12px 8px; }
   .project-keyfin .kf-chart-mid { display: none !important; }
   .project-keyfin .kf-chart-narrow { display: block !important; }
@@ -4988,7 +4821,6 @@ svg {
   .project-keyfin .kf-chart-narrow .kf-unit { font-size: 11px; }
   .project-keyfin .kf-roles li { grid-template-columns: 1fr; row-gap: 2px; }
   .project-keyfin .kf-role-what { grid-row: auto; }
-  .project-keyfin .kf-stats { gap: 10px; }
 }
 
 @media (max-width: 900px) {
