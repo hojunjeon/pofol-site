@@ -4124,7 +4124,7 @@ svg {
   border-radius: 5px;
   color: #33415c;
   background: #f7f9fc;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 650;
 }
 
@@ -4179,7 +4179,7 @@ svg {
 .project-keyfin .keyfin-module-heading .strategy-kicker {
   margin: 0 0 3px;
   color: var(--blue);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
 }
 
@@ -4238,7 +4238,7 @@ svg {
 .project-keyfin .keyfin-component-grid span,
 .project-keyfin .keyfin-model-title span {
   color: #59667d;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.4;
 }
 
@@ -4308,7 +4308,7 @@ svg {
 
 .project-keyfin .keyfin-guardrails li {
   color: #40506a;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.45;
 }
 
@@ -4359,7 +4359,7 @@ svg {
   border-top: 1px solid var(--line);
   color: #263752;
   background: #f7f9fc;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 650;
   line-height: 1.6;
   text-align: center;
@@ -4367,7 +4367,7 @@ svg {
 
 .project-keyfin .keyfin-proof-grid {
   display: grid;
-  grid-template-columns: 1.08fr .92fr;
+  grid-template-columns: 1fr;
   align-items: start;
   gap: 14px;
 }
@@ -4377,7 +4377,7 @@ svg {
   table-layout: fixed;
   border-collapse: collapse;
   color: #36445d;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
@@ -4385,7 +4385,8 @@ svg {
 .project-keyfin .keyfin-results td {
   padding: 8px 7px;
   border-bottom: 1px solid var(--line);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: keep-all;
   text-align: left;
   vertical-align: top;
 }
@@ -4405,7 +4406,7 @@ svg {
   display: block;
   margin-top: 3px;
   color: #788399;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 500;
 }
 
@@ -4425,16 +4426,26 @@ svg {
 
 .project-keyfin .keyfin-chart img {
   display: block;
-  width: 100%;
+  width: min(760px, 100%);
   height: auto;
+  margin: 0 auto;
 }
 
+.project-keyfin .keyfin-chart-link { display: block; }
+
 .project-keyfin .keyfin-chart figcaption {
-  margin-top: 4px;
+  display: grid;
+  gap: 3px;
+  margin-top: 8px;
   color: #68758a;
-  font-size: 9px;
-  line-height: 1.4;
+  font-size: 12px;
+  line-height: 1.5;
   text-align: center;
+}
+
+.project-keyfin .keyfin-chart figcaption strong {
+  color: #263752;
+  font-size: 13px;
 }
 
 .project-keyfin .keyfin-highlights {
@@ -4455,13 +4466,13 @@ svg {
 
 .project-keyfin .keyfin-highlights strong {
   color: var(--blue);
-  font-size: 10px;
+  font-size: 11px;
   white-space: nowrap;
 }
 
 .project-keyfin .keyfin-highlights span {
   color: #40506a;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.45;
 }
 
@@ -4506,7 +4517,6 @@ svg {
   .project-keyfin .keyfin-model-grid,
   .project-keyfin .keyfin-proof-grid,
   .project-keyfin .keyfin-highlights { grid-template-columns: 1fr; }
-  .project-keyfin .keyfin-results { font-size: 9px; }
   .project-keyfin .keyfin-results th,
   .project-keyfin .keyfin-results td { padding: 7px 5px; }
 }

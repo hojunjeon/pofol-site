@@ -519,7 +519,7 @@ function renderKeyfinStrategy(project) {
       <div class="keyfin-module-heading"><span class="number-badge">03</span><div>${renderSectionLabel("수정 전후 · 검증 결과")}<h4>계산·답변·응답 지연을 각각 검증했습니다.</h4></div></div>
       <div class="keyfin-proof-grid">
         <table class="keyfin-results"><thead><tr><th scope="col">검증 항목</th><th scope="col">변경</th><th scope="col">결과</th></tr></thead><tbody>${s.results.map((item) => `<tr><th scope="row">${item.label}<small>${item.detail}</small></th><td>${item.change}</td><td><strong>${item.result}</strong></td></tr>`).join("")}</tbody></table>
-        <figure class="keyfin-chart"><img src="${s.chart.src}" alt="${s.chart.alt}" loading="lazy" decoding="async" /><figcaption>동시 1·4·8요청 p50 · 격리 서빙 비교</figcaption></figure>
+        <figure class="keyfin-chart"><a class="keyfin-chart-link" href="${s.chart.src}" target="_blank" rel="noopener" aria-label="응답 지연 그래프 SVG 열기"><img src="${s.chart.src}" alt="${s.chart.alt}" loading="lazy" decoding="async" /></a><figcaption><span>NF4 → FP8 · vLLM</span><strong>동시 8요청 p50: 49.07초 → 5.40초</strong></figcaption></figure>
       </div>
       <div class="keyfin-highlights">${s.highlights.map((item) => `<article><strong>${item.label}</strong><span>${item.text}</span></article>`).join("")}</div>
     </article>
