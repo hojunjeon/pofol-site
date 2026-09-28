@@ -1,4 +1,4 @@
-import { pages, projects, resumeProjects, routes, skillGroups } from "./data.js?v=20260928-keyfin-02";
+import { pages, projects, resumeProjects, routes, skillGroups } from "./data.js?v=20260929-keyfin-redesign";
 
 const app = document.querySelector("#app");
 const query = new URLSearchParams(location.search);
@@ -299,21 +299,7 @@ function renderPrimer(project) {
 }
 
 function renderPrimary(project) {
-  if (project.layout === "keyfin") {
-    const p = project.primary;
-    return `<figure class="project-primary keyfin-showcase" id="${project.slug}-media" aria-label="${p.alt}">
-      <div class="keyfin-showcase-brand">
-        <img class="keyfin-logo" src="${p.logo}" alt="KeyFin" loading="eager" decoding="async" />
-        <p>예산을 세우고,<br />소비 전에 코치에게 묻습니다.</p>
-        <img class="keyfin-mascot" src="${p.mascot}" alt="KeyFin의 사용자 캐릭터와 고양이 코치" loading="eager" decoding="async" />
-        <div class="keyfin-tags"><span>7개 예산 봉투</span><span>금융 디지털 트윈</span><span>AI 고양이 코치</span></div>
-      </div>
-      <div class="keyfin-showcase-screens">
-        <div class="keyfin-screen"><img src="${p.budget}" alt="일곱 개 예산 봉투를 설정하는 KeyFin 화면" loading="eager" decoding="async" /><span>예산 설정</span></div>
-        <div class="keyfin-screen"><img src="${p.coaching}" alt="소비 분석 결과를 설명하는 KeyFin AI 코치 화면" loading="eager" decoding="async" /><span>소비 분석 · 코칭</span></div>
-      </div>
-    </figure>`;
-  }
+  if (project.layout === "keyfin") return renderKeyfinStage(project);
   return `<figure class="project-primary" id="${project.slug}-media">
     <img src="${project.primary.src}" alt="${project.primary.alt}" loading="eager" decoding="async" />
     ${project.primary.caption ? `<figcaption>${project.primary.caption}</figcaption>` : ""}
@@ -496,32 +482,161 @@ function renderParkingStrategy(project) {
   </section>`;
 }
 
+function keyfinPhone(screen, className = "") {
+  return `<div class="kf-phone ${className}"><div class="kf-phone-screen"><img src="${screen.src}" alt="${screen.alt}" loading="lazy" decoding="async" /></div></div>`;
+}
+
+function keyfinRoomPhone(screen) {
+  return `<div class="kf-phone kf-room"><div class="kf-phone-screen">
+      ${screen.rooms.map((room, index) => `<img class="kf-room-state kf-room-${index + 1}" src="${room.src}" alt="${index === 0 ? screen.alt : ""}" ${index === 0 ? "" : 'aria-hidden="true"'} loading="lazy" decoding="async" />`).join("")}
+    </div></div>
+    <p class="kf-room-legend" aria-hidden="true">${screen.rooms.map((room, index) => `<span class="kf-room-label kf-room-label-${index + 1}">${room.label}</span>`).join("")}</p>`;
+}
+
+function renderKeyfinStage(project) {
+  const p = project.primary;
+  return `<figure class="project-primary keyfin-stage" id="${project.slug}-media" aria-label="${p.alt}">
+    <div class="kf-stage-head">
+      <img class="kf-logo" src="${p.logo}" alt="KeyFin" width="1100" height="290" loading="lazy" decoding="async" />
+      <p>${p.tagline}</p>
+    </div>
+    <ol class="kf-screens" tabindex="0" aria-label="KeyFin 주요 화면">
+      ${p.screens.map((screen) => `<li class="kf-screen ${screen.mine ? "is-mine" : ""}">
+        ${screen.rooms ? keyfinRoomPhone(screen) : keyfinPhone(screen)}
+        <div class="kf-screen-copy">
+          <span class="kf-screen-index">${screen.index}</span>
+          <div><strong>${screen.title}</strong><p>${screen.text}</p>${screen.mine ? '<em class="kf-mine">AI 파트에서 개발</em>' : ""}</div>
+        </div>
+      </li>`).join("")}
+    </ol>
+  </figure>`;
+}
+
+function keyfinHeading(block) {
+  return `<div class="kf-head"><span class="number-badge">${block.index}</span>${renderSectionLabel(block.label)}</div>
+    <h4>${block.title}</h4>
+    ${block.text ? `<p class="kf-lead">${block.text}</p>` : ""}`;
+}
+
+function keyfinLatencySvg(latency, width, className) {
+  const height = 300;
+  const left = 44;
+  const right = 8;
+  const top = 26;
+  const bottom = 238;
+  const max = 50;
+  const y = (value) => bottom - (value / max) * (bottom - top);
+  const band = (width - left - right) / latency.groups.length;
+  const barWidth = 24;
+  const gap = 2;
+  const colors = ["#7384a6", "#1264ff"];
+  const columnPath = (x, value) => {
+    const yTop = y(value);
+    const r = Math.min(4, bottom - yTop);
+    return `M${x} ${bottom}V${yTop + r}Q${x} ${yTop} ${x + r} ${yTop}H${x + barWidth - r}Q${x + barWidth} ${yTop} ${x + barWidth} ${yTop + r}V${bottom}Z`;
+  };
+  const ticks = [0, 10, 20, 30, 40, 50].map((tick) => `<g class="kf-axis"><line x1="${left}" x2="${width - right}" y1="${y(tick)}" y2="${y(tick)}" /><text x="${left - 10}" y="${y(tick) + 4}" text-anchor="end">${tick}</text></g>`).join("");
+  const groups = latency.groups.map(([label, before, after], index) => {
+    const center = left + band * index + band / 2;
+    const x0 = center - barWidth - gap / 2;
+    const x1 = center + gap / 2;
+    return `<g class="kf-group">
+      <path class="kf-bar" d="${columnPath(x0, before)}" fill="${colors[0]}"><title>${label} · ${latency.series[0]} ${before.toFixed(2)}${latency.unit}</title></path>
+      <path class="kf-bar" d="${columnPath(x1, after)}" fill="${colors[1]}"><title>${label} · ${latency.series[1]} ${after.toFixed(2)}${latency.unit}</title></path>
+      <text class="kf-value" x="${x0 + barWidth / 2 - 6}" y="${y(before) - 8}" text-anchor="end">${before.toFixed(2)}</text>
+      <text class="kf-value kf-value-strong" x="${x1 + barWidth / 2 + 6}" y="${y(after) - 8}" text-anchor="start">${after.toFixed(2)}</text>
+      <text class="kf-category" x="${center}" y="${bottom + 24}" text-anchor="middle">${label}</text>
+      <text class="kf-speedup" x="${center}" y="${bottom + 44}" text-anchor="middle">${(before / after < 2 ? (before / after).toFixed(2) : (before / after).toFixed(1))}배 빠름</text>
+    </g>`;
+  }).join("");
+  return `<svg class="${className}" viewBox="0 0 ${width} ${height}" aria-hidden="true" focusable="false">
+      <text class="kf-unit" x="${left - 10}" y="12" text-anchor="end">${latency.unit}</text>
+      ${ticks}${groups}
+    </svg>`;
+}
+
+function keyfinLatencyChart(latency) {
+  const colors = ["#7384a6", "#1264ff"];
+  return `<figure class="kf-latency">
+    <figcaption>
+      <strong>${latency.title}</strong>
+      <span class="kf-legend">${latency.series.map((name, index) => `<span><i style="background:${colors[index]}"></i>${name}</span>`).join("")}</span>
+    </figcaption>
+    <div class="kf-latency-plot" role="img" aria-label="${latency.groups.map(([label, before, after]) => `${label} ${before}초에서 ${after}초`).join(", ")}">
+      ${keyfinLatencySvg(latency, 860, "kf-chart-wide")}
+      ${keyfinLatencySvg(latency, 600, "kf-chart-mid")}
+      ${keyfinLatencySvg(latency, 330, "kf-chart-narrow")}
+    </div>
+    <table class="visually-hidden"><caption>${latency.title}</caption><thead><tr><th scope="col">동시 요청</th>${latency.series.map((name) => `<th scope="col">${name}</th>`).join("")}</tr></thead><tbody>${latency.groups.map(([label, before, after]) => `<tr><th scope="row">${label}</th><td>${before}${latency.unit}</td><td>${after}${latency.unit}</td></tr>`).join("")}</tbody></table>
+  </figure>`;
+}
+
 function renderKeyfinStrategy(project) {
-  const s = project.strategy;
+  const { before, after, receipt, twin, results } = project.strategy;
+  const compareMax = 100;
   return `<section class="strategy-section strategy-reframe keyfin-strategy" id="${project.slug}-strategy" aria-labelledby="${project.slug}-strategy-title">
     <h3 class="strategy-title" id="${project.slug}-strategy-title">전개 · 핵심 판단</h3>
-    <article class="keyfin-module">
-      <div class="keyfin-module-heading"><span class="number-badge">01</span><div>${renderSectionLabel("계산 · 맥락 · 언어의 역할 분리")}<h4>Coaching Core가 계산 엔진과 언어 모델을 연결합니다.</h4></div></div>
-      <div class="keyfin-architecture">
-        <div class="keyfin-core-node"><img src="${s.core.src}" alt="${s.core.alt}" loading="lazy" decoding="async" /><strong>Coaching Core</strong><span>질문 해석 · 기능 라우팅</span></div>
-        <span class="keyfin-connect" aria-hidden="true">→</span>
-        <div class="keyfin-component-grid">${s.components.map((item) => `<article><img src="${item.src}" alt="${item.alt}" loading="lazy" decoding="async" /><strong>${item.title}</strong><span>${item.text}</span></article>`).join("")}</div>
+    <div class="kf-reframe-grid">
+      <article class="kf-story card-soft">
+        ${keyfinHeading(before)}
+        <div class="kf-story-body">
+          <div class="kf-bill" role="group" aria-label="예산 편성 결과 비교">
+            <dl>${before.rows.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>
+            <p class="kf-bill-total"><span>${before.total[0]}</span><strong>${before.total[1]}</strong></p>
+          </div>
+          <p class="kf-note">${icon("warning")}<span>${before.note}</span></p>
+        </div>
+      </article>
+      <article class="kf-story card-soft">
+        ${keyfinHeading(after)}
+        <div class="kf-story-body">
+          <ol class="kf-roles">${after.roles.map(([what, who, how]) => `<li><span class="kf-role-what">${what}</span><strong>${who}</strong><small>${how}</small></li>`).join("")}</ol>
+          <p class="kf-note kf-note-ok">${icon("check")}<span>${after.note}</span></p>
+        </div>
+      </article>
+    </div>
+
+    <article class="kf-module kf-receipt-module card-soft">
+      ${keyfinHeading(receipt)}
+      <ol class="kf-steps" aria-label="답변 처리 순서">${receipt.steps.map((step) => `<li>${step}</li>`).join("")}</ol>
+      <div class="kf-receipt-stage">
+        <figure class="kf-answer">
+          ${keyfinPhone(receipt.phone, "kf-phone-scroll")}
+          <figcaption>실제 앱 답변 화면</figcaption>
+        </figure>
+        <div class="kf-receipt" role="group" aria-label="이 답변의 계산 영수증">
+          <div class="kf-receipt-top"><strong>계산 영수증</strong><span>FDT receipt</span></div>
+          <div class="kf-receipt-question"><span>질문</span><p>${receipt.question}</p></div>
+          <dl class="kf-receipt-rows">${receipt.request.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>
+          <p class="kf-receipt-divider"><span>400개 미래 경로 계산</span></p>
+          <dl class="kf-receipt-rows kf-receipt-results">${receipt.results.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>
+          <ul class="kf-receipt-checks">${receipt.checks.map((item) => `<li>${icon("check")}<span>${item}</span></li>`).join("")}</ul>
+        </div>
       </div>
-      <div class="keyfin-responsibilities">${s.responsibilities.map(([title, text]) => `<article><strong>${title}</strong><span>${text}</span></article>`).join("")}</div>
-      <ul class="keyfin-guardrails">${s.guardrails.map((item) => `<li>${item}</li>`).join("")}</ul>
     </article>
-    <article class="keyfin-module">
-      <div class="keyfin-module-heading"><span class="number-badge">02</span><div>${renderSectionLabel("금융 디지털 트윈")}<h4>현재 상태와 행동을 입력해 미래 경로를 계산합니다.</h4></div></div>
-      <div class="keyfin-model-grid">${s.models.map((model) => `<article><div class="keyfin-model-title"><strong>${model.title}</strong><span>${model.text}</span></div><img class="keyfin-model-main" src="${model.src}" alt="${model.title} 구성 그림" loading="lazy" decoding="async" /><img class="keyfin-model-detail" src="${model.detailSrc}" alt="${model.alt}" loading="lazy" decoding="async" /></article>`).join("")}</div>
-      <p class="keyfin-flow-line">${s.flow}</p>
-    </article>
-    <article class="keyfin-module">
-      <div class="keyfin-module-heading"><span class="number-badge">03</span><div>${renderSectionLabel("수정 전후 · 검증 결과")}<h4>계산·답변·응답 지연을 각각 검증했습니다.</h4></div></div>
-      <div class="keyfin-proof-grid">
-        <table class="keyfin-results"><thead><tr><th scope="col">검증 항목</th><th scope="col">변경</th><th scope="col">결과</th></tr></thead><tbody>${s.results.map((item) => `<tr><th scope="row">${item.label}<small>${item.detail}</small></th><td>${item.change}</td><td><strong>${item.result}</strong></td></tr>`).join("")}</tbody></table>
-        <figure class="keyfin-chart"><a class="keyfin-chart-link" href="${s.chart.src}" target="_blank" rel="noopener" aria-label="응답 지연 그래프 SVG 열기"><img src="${s.chart.src}" alt="${s.chart.alt}" loading="lazy" decoding="async" /></a><figcaption><span>NF4 → FP8 · vLLM</span><strong>동시 8요청 p50: 49.07초 → 5.40초</strong></figcaption></figure>
+
+    <article class="kf-module kf-twin card-soft">
+      ${keyfinHeading(twin)}
+      <div class="kf-twin-grid">
+        <figure class="kf-forecast">
+          <img src="${twin.forecast.src}" alt="${twin.forecast.alt}" width="602" height="516" loading="lazy" decoding="async" />
+          <figcaption>${twin.forecast.caption}</figcaption>
+        </figure>
+        <div class="kf-twin-side">
+        <dl class="kf-twin-io">${twin.io.map(([label, value], index) => `<div class="${index === 2 ? "is-output" : ""}"><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>
+        <figure class="kf-compare">
+          <figcaption><strong>${twin.compare.title}</strong><span>${twin.compare.caption}</span></figcaption>
+          <ul>${twin.compare.rows.map(([label, value, picked]) => `<li class="${picked ? "is-picked" : ""}"><span class="kf-compare-label">${label}</span><span class="kf-compare-track"><span class="kf-compare-bar" style="width:${(value / compareMax) * 100}%"></span></span><span class="kf-compare-value">${value.toFixed(2)}%</span></li>`).join("")}</ul>
+        </figure>
+        </div>
       </div>
-      <div class="keyfin-highlights">${s.highlights.map((item) => `<article><strong>${item.label}</strong><span>${item.text}</span></article>`).join("")}</div>
+    </article>
+
+    <article class="kf-module kf-results card-soft">
+      ${keyfinHeading({ index: results.index, label: results.label, title: results.title })}
+      <div class="kf-stats">${results.stats.map((stat) => `<article class="kf-stat"><p class="kf-stat-label">${stat.label}</p><p class="kf-stat-value"><span>${stat.before}</span><span class="kf-stat-arrow" aria-hidden="true">→</span><strong>${stat.after}</strong></p><p class="kf-stat-text">${stat.text}</p></article>`).join("")}</div>
+      ${keyfinLatencyChart(results.latency)}
+      <p class="kf-footnote">${results.footnote}</p>
     </article>
   </section>`;
 }
