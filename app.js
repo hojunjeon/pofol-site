@@ -1,4 +1,4 @@
-import { pages, projects, resumeProjects, routes, skillGroups } from "./data.js";
+import { pages, projects, resumeProjects, routes, skillGroups } from "./data.js?v=20260928-keyfin-02";
 
 const app = document.querySelector("#app");
 const query = new URLSearchParams(location.search);
@@ -299,6 +299,21 @@ function renderPrimer(project) {
 }
 
 function renderPrimary(project) {
+  if (project.layout === "keyfin") {
+    const p = project.primary;
+    return `<figure class="project-primary keyfin-showcase" id="${project.slug}-media" aria-label="${p.alt}">
+      <div class="keyfin-showcase-brand">
+        <img class="keyfin-logo" src="${p.logo}" alt="KeyFin" loading="eager" decoding="async" />
+        <p>예산을 세우고,<br />소비 전에 코치에게 묻습니다.</p>
+        <img class="keyfin-mascot" src="${p.mascot}" alt="KeyFin의 사용자 캐릭터와 고양이 코치" loading="eager" decoding="async" />
+        <div class="keyfin-tags"><span>7개 예산 봉투</span><span>금융 디지털 트윈</span><span>AI 고양이 코치</span></div>
+      </div>
+      <div class="keyfin-showcase-screens">
+        <div class="keyfin-screen"><img src="${p.budget}" alt="일곱 개 예산 봉투를 설정하는 KeyFin 화면" loading="eager" decoding="async" /><span>예산 설정</span></div>
+        <div class="keyfin-screen"><img src="${p.coaching}" alt="소비 분석 결과를 설명하는 KeyFin AI 코치 화면" loading="eager" decoding="async" /><span>소비 분석 · 코칭</span></div>
+      </div>
+    </figure>`;
+  }
   return `<figure class="project-primary" id="${project.slug}-media">
     <img src="${project.primary.src}" alt="${project.primary.alt}" loading="eager" decoding="async" />
     ${project.primary.caption ? `<figcaption>${project.primary.caption}</figcaption>` : ""}
@@ -481,6 +496,36 @@ function renderParkingStrategy(project) {
   </section>`;
 }
 
+function renderKeyfinStrategy(project) {
+  const s = project.strategy;
+  return `<section class="strategy-section strategy-reframe keyfin-strategy" id="${project.slug}-strategy" aria-labelledby="${project.slug}-strategy-title">
+    <h3 class="strategy-title" id="${project.slug}-strategy-title">전개 · 핵심 판단</h3>
+    <article class="keyfin-module">
+      <div class="keyfin-module-heading"><span class="number-badge">01</span><div>${renderSectionLabel("계산 · 맥락 · 언어의 역할 분리")}<h4>Coaching Core가 계산 엔진과 언어 모델을 연결합니다.</h4></div></div>
+      <div class="keyfin-architecture">
+        <div class="keyfin-core-node"><img src="${s.core.src}" alt="${s.core.alt}" loading="lazy" decoding="async" /><strong>Coaching Core</strong><span>질문 해석 · 기능 라우팅</span></div>
+        <span class="keyfin-connect" aria-hidden="true">→</span>
+        <div class="keyfin-component-grid">${s.components.map((item) => `<article><img src="${item.src}" alt="${item.alt}" loading="lazy" decoding="async" /><strong>${item.title}</strong><span>${item.text}</span></article>`).join("")}</div>
+      </div>
+      <div class="keyfin-responsibilities">${s.responsibilities.map(([title, text]) => `<article><strong>${title}</strong><span>${text}</span></article>`).join("")}</div>
+      <ul class="keyfin-guardrails">${s.guardrails.map((item) => `<li>${item}</li>`).join("")}</ul>
+    </article>
+    <article class="keyfin-module">
+      <div class="keyfin-module-heading"><span class="number-badge">02</span><div>${renderSectionLabel("금융 디지털 트윈")}<h4>현재 상태와 행동을 입력해 미래 경로를 계산합니다.</h4></div></div>
+      <div class="keyfin-model-grid">${s.models.map((model) => `<article><div class="keyfin-model-title"><strong>${model.title}</strong><span>${model.text}</span></div><img class="keyfin-model-main" src="${model.src}" alt="${model.title} 구성 그림" loading="lazy" decoding="async" /><img class="keyfin-model-detail" src="${model.detailSrc}" alt="${model.alt}" loading="lazy" decoding="async" /></article>`).join("")}</div>
+      <p class="keyfin-flow-line">${s.flow}</p>
+    </article>
+    <article class="keyfin-module">
+      <div class="keyfin-module-heading"><span class="number-badge">03</span><div>${renderSectionLabel("수정 전후 · 검증 결과")}<h4>계산·답변·응답 지연을 각각 검증했습니다.</h4></div></div>
+      <div class="keyfin-proof-grid">
+        <table class="keyfin-results"><thead><tr><th scope="col">검증 항목</th><th scope="col">변경</th><th scope="col">결과</th></tr></thead><tbody>${s.results.map((item) => `<tr><th scope="row">${item.label}<small>${item.detail}</small></th><td>${item.change}</td><td><strong>${item.result}</strong></td></tr>`).join("")}</tbody></table>
+        <figure class="keyfin-chart"><img src="${s.chart.src}" alt="${s.chart.alt}" loading="lazy" decoding="async" /><figcaption>동시 1·4·8요청 p50 · 격리 서빙 비교</figcaption></figure>
+      </div>
+      <div class="keyfin-highlights">${s.highlights.map((item) => `<article><strong>${item.label}</strong><span>${item.text}</span></article>`).join("")}</div>
+    </article>
+  </section>`;
+}
+
 function renderCompetitionStrategy(project) {
   const s = project.strategy;
   return `<section class="strategy-section strategy-reframe competition-strategy" id="${project.slug}-strategy" aria-labelledby="${project.slug}-strategy-title">
@@ -504,6 +549,7 @@ function renderCompetitionStrategy(project) {
 function renderReframeStrategy(project) {
   if (project.layout === "pathfinder") return renderPathfinderStrategy(project);
   if (project.layout === "aegis") return renderAegisStrategy(project);
+  if (project.layout === "keyfin") return renderKeyfinStrategy(project);
   if (project.layout === "parking") return renderParkingStrategy(project);
   return renderCompetitionStrategy(project);
 }

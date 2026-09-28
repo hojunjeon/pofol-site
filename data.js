@@ -132,11 +132,78 @@ export const projects = {
     tech: ["FastAPI", "GraphRAG", "LLM pipeline", "Django REST Framework", "Vue.js", "SQL", "Playwright"],
   },
 
+  keyfin: {
+    slug: "keyfin",
+    domain: "ai",
+    index: "02",
+    eyebrow: "02 / KeyFin · 문제 재정의",
+    title: "KeyFin AI 코칭",
+    summary: "거래 원장과 금융 디지털 트윈으로 예산·소비·구매 판단을 돕는 AI 코칭 서비스",
+    facts: [
+      { icon: "calendar", label: "기간", value: "2026.09.07–09.24" },
+      { icon: "team", label: "형태", value: "SSAFY 특화 프로젝트(팀)" },
+      { icon: "person", label: "역할", value: "AI 파트 공동 개발<br>FDT·코칭·검증·차트 연동" },
+    ],
+    primer: {
+      context: "이번 달 소비 흐름을 확인하거나, 구매 전에 예산 영향을 살펴볼 때 사용합니다.",
+      flow: "거래 기록 → 금융 트윈 → 시뮬레이션 → 수치·표·코칭 답변",
+    },
+    primary: {
+      alt: "KeyFin 앱의 예산 설정과 소비 분석·AI 코칭 화면",
+      logo: referenceMedia("evidence/ai/keyfin/keyfin-logo.webp"),
+      mascot: referenceMedia("evidence/ai/keyfin/keyfin-mascot.webp"),
+      budget: referenceMedia("evidence/ai/keyfin/keyfin-budget-screen.webp"),
+      coaching: referenceMedia("evidence/ai/keyfin/keyfin-coaching-screen.webp"),
+    },
+    decision: [
+      { text: "금액·확률은 FDT가 계산하고," },
+      { text: "LLM", accent: true },
+      { text: "은 질문 의도와 근거를 골라 설명합니다." },
+    ],
+    type: "reframe",
+    layout: "keyfin",
+    strategy: {
+      core: { src: referenceMedia("evidence/ai/keyfin/coaching-core.webp"), alt: "질문 해석과 기능 라우팅을 맡는 Coaching Core 구성 요소" },
+      components: [
+        { title: "FDT", text: "금융 계산", src: referenceMedia("evidence/ai/keyfin/fdt-component.webp"), alt: "금융 디지털 트윈 계산 구성 요소" },
+        { title: "SQLite", text: "사용자 맥락", src: referenceMedia("evidence/ai/keyfin/sqlite-component.webp"), alt: "사용자 맥락을 저장하는 SQLite 구성 요소" },
+        { title: "LLM Client", text: "코칭 전략", src: referenceMedia("evidence/ai/keyfin/llm-client-component.webp"), alt: "질문 의도와 근거를 선택하는 LLM Client 구성 요소" },
+        { title: "GPU · vLLM", text: "Qwen 27B", src: referenceMedia("evidence/ai/keyfin/gpu-vllm-component.webp"), alt: "GPU에서 vLLM으로 제공하는 Qwen 27B 구성 요소" },
+      ],
+      responsibilities: [
+        ["금액 · 확률", "FDT 계산"],
+        ["질문 의도 · 근거", "LLM 선택 · 설명"],
+        ["최종 응답", "receipt 검증 · 서버 조립"],
+      ],
+      guardrails: ["계산값을 receipt에 보존", "명확한 질문은 모델 호출 생략", "모델 문장은 가드 통과 후 사용"],
+      models: [
+        { title: "State Model", text: "금융 상태", src: referenceMedia("evidence/ai/keyfin/fdt-state.webp"), detailSrc: referenceMedia("evidence/ai/keyfin/fdt-state-detail.webp"), alt: "State Model의 잔액·자산·예산·고정지출 항목" },
+        { title: "Action Model", text: "비교할 행동", src: referenceMedia("evidence/ai/keyfin/fdt-action.webp"), detailSrc: referenceMedia("evidence/ai/keyfin/fdt-action-detail.webp"), alt: "Action Model의 소비·절약·예산 변경·목표 설정 항목" },
+        { title: "Transition Function", text: "행동 이후 계산", src: referenceMedia("evidence/ai/keyfin/fdt-transition.webp"), detailSrc: referenceMedia("evidence/ai/keyfin/fdt-modes.webp"), alt: "Transition Function의 예측·위험 분석·목표 달성·최적화 항목" },
+      ],
+      flow: "과거 거래 → 요일을 맞춘 7일 블록 재표집 → 400개 미래 경로 → 금액·기간·부족 비율 계산",
+      results: [
+        { label: "수치 전달", change: "receipt 검증 후 본문 조립", result: "0/14 → 14/14", detail: "동일 POST 7건" },
+        { label: "예측 후보 비교", change: "같은 정답으로 11개 후보 비교", result: "FDT 유지", detail: "합성 원장 336사례" },
+        { label: "모델 호출", change: "결정론 경로 확대", result: "135 → 94문항", detail: "고정 질문 570문항" },
+      ],
+      chart: {
+        src: referenceMedia("evidence/ai/keyfin/latency-p50.svg"),
+        alt: "동시 1·4·8요청의 NF4와 FP8 vLLM 응답 p50 비교 그래프",
+      },
+      highlights: [
+        { label: "구매 판단", text: "절대 부족 신호를 사용해 이미 부족한 경우도 놓치지 않도록 했습니다." },
+        { label: "GPU 연결", text: "GPU 워커의 역터널과 폴백으로 외부 연결 경계를 처리했습니다." },
+      ],
+    },
+    tech: ["Python", "NumPy", "FastAPI", "Qwen3.8-27B", "vLLM · L40S", "SQLite", "WebSocket", "pytest"],
+  },
+
   aegis: {
     slug: "aegis",
     domain: "ai",
-    index: "02",
-    eyebrow: "02 / Aegis · 문제 재정의",
+    index: "03",
+    eyebrow: "03 / Aegis · 문제 재정의",
     title: "Aegis (Sentinel-30)",
     summary: "보이스피싱 통화 단서를 검토 가능한 JSON 위험정보 이벤트로 만드는 로컬 전용 PoC",
     facts: [
@@ -182,8 +249,8 @@ export const projects = {
   hermes: {
     slug: "hermes",
     domain: "ai",
-    index: "03",
-    eyebrow: "03 / Hermes · 운영 고도화",
+    index: "04",
+    eyebrow: "04 / Hermes · 운영 고도화",
     title: "상시 운영형 Hermes 에이전트",
     summary: "Telegram에서 받은 개인 업무를 실행하고 결과를 기록하는 개인용 AI 비서 시스템",
     facts: [
@@ -229,8 +296,8 @@ export const projects = {
   parking: {
     slug: "parking",
     domain: "ai",
-    index: "04",
-    eyebrow: "04 / Hybrid parking AI · 판단 단위 분리",
+    index: "05",
+    eyebrow: "05 / Hybrid parking AI · 판단 단위 분리",
     title: "하이브리드 주차공간 탐지",
     summary: "주행 가능 영역·주차면·장애물을 한 장면에서 구분하는 하이브리드 컴퓨터비전 프로젝트",
     facts: [
@@ -484,7 +551,7 @@ export const projects = {
 export const pages = {
   ai: {
     key: "ai",
-    projects: ["pathfinder", "aegis", "hermes", "parking"],
+    projects: ["pathfinder", "keyfin", "aegis", "hermes", "parking"],
   },
   robotics: {
     key: "robotics",
