@@ -1,4 +1,4 @@
-import { pages, projects, resumeProjects, routes, skillGroups } from "./data.js?v=20260929-keyfin-visual";
+import { pages, projects, resumeProjects, routes, skillGroups } from "./data.js?v=20260929-keyfin-assets";
 
 const app = document.querySelector("#app");
 const query = new URLSearchParams(location.search);
@@ -586,8 +586,10 @@ function renderKeyfinStrategy(project) {
       <article class="kf-story card-soft">
         ${keyfinHeading(after)}
         <div class="kf-story-body">
-          <dl class="kf-roles">${after.roles.map(([who, what]) => `<div><dt>${who}</dt><dd>${what}</dd></div>`).join("")}</dl>
-          <p class="kf-note kf-note-ok">${icon("check")}<span>${after.keyword}</span></p>
+          <div class="kf-core" role="group" aria-label="Coaching Core 구성">
+            <figure class="kf-core-hub"><img src="${after.core.src}" alt="${after.core.alt}" loading="lazy" decoding="async" /><figcaption><strong>${after.core.title}</strong><span>${after.core.text}</span></figcaption></figure>
+            <ul class="kf-core-parts">${after.parts.map((part) => `<li><img src="${part.src}" alt="${part.alt}" loading="lazy" decoding="async" /><p><strong>${part.title}</strong><span>${part.text}</span></p></li>`).join("")}</ul>
+          </div>
         </div>
       </article>
     </div>
@@ -595,7 +597,7 @@ function renderKeyfinStrategy(project) {
     <article class="kf-module kf-twin card-soft">
       ${keyfinHeading(twin)}
       <div class="kf-twin-grid">
-        <ol class="kf-flow" aria-label="FDT 계산 흐름">${twin.flow.map(([title, items], index) => `<li class="${index === 1 ? "is-core" : ""}"><strong>${title}</strong>${items.map((item) => `<span>${item}</span>`).join("")}</li>`).join("")}</ol>
+        <ol class="kf-flow" aria-label="FDT 계산 흐름">${twin.flow.map((step) => `<li><img src="${step.src}" alt="${step.alt}" loading="lazy" decoding="async" /><strong>${step.title}</strong><span>${step.text}</span></li>`).join("")}</ol>
         <figure class="kf-compare">
           <figcaption><strong>${twin.compare.title}</strong><em>${twin.compare.tag}</em></figcaption>
           <ul>${twin.compare.rows.map(([label, value, picked]) => `<li class="${picked ? "is-picked" : ""}"><span class="kf-compare-label">${label}</span><span class="kf-compare-track"><span class="kf-compare-bar" style="width:${value}%"></span></span><span class="kf-compare-value">${value.toFixed(2)}%</span></li>`).join("")}</ul>
@@ -620,14 +622,9 @@ function renderKeyfinStrategy(project) {
     <article class="kf-module kf-results card-soft">
       ${keyfinHeading(results)}
       <div class="kf-result-grid">
-        <section class="kf-panel" aria-label="${results.accuracy.title}">
+        <section class="kf-panel kf-accuracy-art" aria-label="${results.accuracy.title}">
           <h5>${results.accuracy.title}</h5>
-          <ul class="kf-meter-list">${results.accuracy.rows.map((row) => `<li>
-            <p><span>${row.label}</span><strong>${row.text}</strong></p>
-            <span class="kf-meter"><i class="is-before" style="width:${(row.before / row.max) * 100}%"></i></span>
-            <span class="kf-meter"><i class="is-after" style="width:${(row.after / row.max) * 100}%"></i></span>
-          </li>`).join("")}</ul>
-          ${keyfinLegend(results.latency.series)}
+          <img src="${results.accuracy.src}" alt="${results.accuracy.alt}" width="562" height="514" loading="lazy" decoding="async" />
         </section>
         <section class="kf-panel" aria-label="${results.speed.title}">
           <h5>${results.speed.title}<strong>${results.speed.headline}</strong></h5>
@@ -637,10 +634,10 @@ function renderKeyfinStrategy(project) {
           ${keyfinLegend(results.latency.series)}
         </section>
       </div>
-      <figure class="kf-coach-chart">
-        <img src="${results.forecast.src}" alt="${results.forecast.alt}" width="602" height="516" loading="lazy" decoding="async" />
-        <figcaption><strong>${results.forecast.title}</strong>${results.forecast.keywords.map((item) => `<span>${item}</span>`).join("")}</figcaption>
-      </figure>
+      <section class="kf-charts" aria-label="${results.charts.title}">
+        <h5>${results.charts.title}</h5>
+        <ul>${results.charts.items.map((chart) => `<li><img src="${chart.src}" alt="${chart.alt}" width="${chart.width}" height="${chart.height}" loading="lazy" decoding="async" /><span>${chart.title}</span></li>`).join("")}</ul>
+      </section>
     </article>
   </section>`;
 }

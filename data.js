@@ -145,8 +145,8 @@ export const projects = {
       { icon: "person", label: "역할", value: "AI 파트 공동 개발(2인)<br>FDT 엔진·예측 차트·AI 코칭" },
     ],
     primer: {
-      context: "결제하기 전, 이걸 사도 되는지 확인할 때",
-      flow: "계좌 연결 → 봉투 예산 → 결제 자동 반영 → 코치에게 질문 → 금액·표로 답변",
+      context: "잔액만 보고 결제했다가 월말에 후회하는 사람이, 사기 전에 이번 달 예산으로 감당할 수 있는지 확인할 때 씁니다.",
+      flow: "계좌·카드를 연결해 소비 카테고리별 예산을 편성하면 결제 내역이 자동으로 반영되고, 코치에게 물으면 계산된 금액과 표로 답합니다.",
     },
     primary: {
       alt: "KeyFin의 예산 설정, AI 코치 답변, 예산 상태에 따라 바뀌는 방 화면",
@@ -156,7 +156,7 @@ export const projects = {
         {
           index: "01",
           title: "예산 설계",
-          text: "한 달 예산을 봉투 7개로 나눕니다.",
+          text: "한 달 예산을 소비 카테고리 7개로 나눕니다.",
           src: referenceMedia("evidence/ai/keyfin/keyfin-app-budget.webp"),
           alt: "외식·교통비·의료·건강 등 봉투별 금액을 슬라이더로 정하는 이번 달 예산 설정 화면",
         },
@@ -202,21 +202,21 @@ export const projects = {
         index: "02",
         label: "바꾼 판단",
         title: "계산은 FDT, 코칭은 LLM",
-        roles: [
-          ["FDT 엔진", "금액 · 기간 · 확률"],
-          ["LLM · Qwen 27B", "질문 이해 · 코칭 전략"],
-          ["코칭 서버", "숫자 대조 · 답변 조립"],
+        core: { src: referenceMedia("evidence/ai/keyfin/coaching-core.webp"), alt: "질문을 해석해 기능을 연결하는 Coaching Core", title: "Coaching Core", text: "질문 해석 · 기능 연결" },
+        parts: [
+          { src: referenceMedia("evidence/ai/keyfin/fdt-component.webp"), alt: "금융 계산을 맡는 FDT", title: "FDT", text: "금액 · 기간 · 확률 계산" },
+          { src: referenceMedia("evidence/ai/keyfin/llm-client-component.webp"), alt: "코칭 전략을 맡는 LLM Client", title: "LLM", text: "질문 이해 · 코칭 전략" },
+          { src: referenceMedia("evidence/ai/keyfin/sqlite-component.webp"), alt: "사용자 맥락을 저장하는 SQLite", title: "SQLite", text: "사용자 맥락 저장" },
         ],
-        keyword: "LLM 문장 속 숫자 차단",
       },
       twin: {
         index: "03",
         label: "FDT 엔진 · 정확도",
         title: "지난 거래로 400가지 미래를 계산",
         flow: [
-          ["입력", ["거래 내역", "잔액 · 예산", "고정지출"]],
-          ["시뮬레이션", ["7일 블록 재조합", "× 400회"]],
-          ["출력", ["월말 예측", "부족 위험", "목표 달성"]],
+          { src: referenceMedia("evidence/ai/keyfin/fdt-state-detail.webp"), alt: "잔액·자산·예산·고정지출로 구성된 현재 금융 상태", title: "현재 상태", text: "잔액 · 자산 · 예산 · 고정지출" },
+          { src: referenceMedia("evidence/ai/keyfin/fdt-action-detail.webp"), alt: "소비·절약·예산 변경·목표 설정 행동", title: "사용자 행동", text: "소비 · 절약 · 예산 변경 · 목표 설정" },
+          { src: referenceMedia("evidence/ai/keyfin/fdt-modes.webp"), alt: "예측·위험 분석·목표 달성·최적화 결과", title: "400회 시뮬레이션 결과", text: "예측 · 위험 분석 · 목표 달성 · 최적화" },
         ],
         compare: {
           title: "예측 오차 (WAPE)",
@@ -245,11 +245,8 @@ export const projects = {
         title: "더 정확하게, 더 빠르게",
         accuracy: {
           title: "정확도",
-          rows: [
-            { label: "답변 속 필수 숫자", before: 0, after: 14, max: 14, text: "0 → 14 / 14" },
-            { label: "오답 수용 (8B → 27B)", before: 23, after: 0, max: 23, text: "23 → 0건" },
-            { label: "숨은 정답 (NF4 → FP8)", before: 121, after: 122, max: 144, text: "121 → 122 / 144" },
-          ],
+          src: referenceMedia("evidence/ai/keyfin/keyfin-accuracy.webp"),
+          alt: "답변 속 필수 숫자 전달 0/14에서 14/14, 오답 수용 23건에서 0건, 예측 오차 WAPE 11개 모델 중 1위 61.42%",
         },
         speed: { title: "속도", headline: "최대 9.1배" },
         latency: {
@@ -262,11 +259,13 @@ export const projects = {
           ],
           series: ["개선 전", "개선 후"],
         },
-        forecast: {
-          src: referenceMedia("evidence/ai/keyfin/keyfin-forecast-chart.webp"),
-          alt: "9월 1일부터 10일까지 누적 소비 310,000원을 실선으로, 9월 30일까지 예상 누적 소비 860,000원을 점선으로 그리고 기간 예산 900,000원 선과 비교한 예산 예측 차트",
+        charts: {
           title: "코칭 차트",
-          keywords: ["실선 · 지금까지 쓴 돈", "점선 · FDT 월말 예측", "빨간선 · 예산"],
+          items: [
+            { src: referenceMedia("evidence/ai/keyfin/keyfin-chart-envelope.webp"), alt: "카테고리 7개의 현재 사용률과 월말 예상 사용률을 세로 막대로 겹쳐 보여 주는 이번 달 남은 예산 차트", title: "카테고리별 사용률", width: 363, height: 345 },
+            { src: referenceMedia("evidence/ai/keyfin/keyfin-chart-budget.webp"), alt: "예산 기간 예상 소비 860,000원과 항목별 현재·예상 사용률을 가로 막대로 보여 주는 차트", title: "월말 예상 소비", width: 726, height: 900 },
+            { src: referenceMedia("evidence/ai/keyfin/keyfin-forecast-chart.webp"), alt: "지금까지의 누적 소비와 월말 예상 누적 소비를 예산선과 비교한 차트", title: "누적 소비 예측", width: 602, height: 516 },
+          ],
         },
       },
     },
