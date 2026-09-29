@@ -1,4 +1,4 @@
-import { pages, projects, resumeProjects, routes, skillGroups } from "./data.js?v=20260929-keyfin-assets";
+import { pages, projects, resumeProjects, routes, skillGroups } from "./data.js?v=20260929-keyfin-fdt";
 
 const app = document.querySelector("#app");
 const query = new URLSearchParams(location.search);
@@ -177,6 +177,12 @@ const techLogos = {
   "Django REST Framework": "django.svg",
   "Vue.js": "vue.svg",
   "SQL": "postgresql.svg",
+  "SQLite": "sqlite.svg",
+  "NumPy": "numpy.svg",
+  "Qwen3.8-27B": "qwen.svg",
+  "vLLM": "vllm.svg",
+  "NVIDIA L40S": "nvidia.svg",
+  "WebSocket": "websocket.svg",
   "Playwright": "playwright.svg",
   "LLM pipeline": "huggingface.svg",
   "LLM": "huggingface.svg",
@@ -587,8 +593,8 @@ function renderKeyfinStrategy(project) {
         ${keyfinHeading(after)}
         <div class="kf-story-body">
           <div class="kf-core" role="group" aria-label="Coaching Core 구성">
-            <figure class="kf-core-hub"><img src="${after.core.src}" alt="${after.core.alt}" loading="lazy" decoding="async" /><figcaption><strong>${after.core.title}</strong><span>${after.core.text}</span></figcaption></figure>
-            <ul class="kf-core-parts">${after.parts.map((part) => `<li><img src="${part.src}" alt="${part.alt}" loading="lazy" decoding="async" /><p><strong>${part.title}</strong><span>${part.text}</span></p></li>`).join("")}</ul>
+            <img class="kf-core-hub" src="${after.core.src}" alt="${after.core.alt}" loading="lazy" decoding="async" />
+            <ul class="kf-core-parts">${after.parts.map((part) => `<li><img src="${part.src}" alt="${part.alt}" loading="lazy" decoding="async" /></li>`).join("")}</ul>
           </div>
         </div>
       </article>
@@ -596,14 +602,17 @@ function renderKeyfinStrategy(project) {
 
     <article class="kf-module kf-twin card-soft">
       ${keyfinHeading(twin)}
-      <div class="kf-twin-grid">
-        <ol class="kf-flow" aria-label="FDT 계산 흐름">${twin.flow.map((step) => `<li><img src="${step.src}" alt="${step.alt}" loading="lazy" decoding="async" /><strong>${step.title}</strong><span>${step.text}</span></li>`).join("")}</ol>
-        <figure class="kf-compare">
-          <figcaption><strong>${twin.compare.title}</strong><em>${twin.compare.tag}</em></figcaption>
-          <ul>${twin.compare.rows.map(([label, value, picked]) => `<li class="${picked ? "is-picked" : ""}"><span class="kf-compare-label">${label}</span><span class="kf-compare-track"><span class="kf-compare-bar" style="width:${value}%"></span></span><span class="kf-compare-value">${value.toFixed(2)}%</span></li>`).join("")}</ul>
-          <p class="kf-caption">${twin.compare.caption}</p>
-        </figure>
-      </div>
+      <ol class="kf-model" aria-label="FDT 구성">${twin.parts.map((part, index) => `${index ? `<li class="kf-model-op" aria-hidden="true">${index === 1 ? "+" : "→"}</li>` : ""}<li class="kf-model-part">
+        <img class="kf-model-main" src="${part.main}" alt="" loading="lazy" decoding="async" />
+        <p class="kf-model-role">${part.role}</p>
+        <img class="kf-model-detail" src="${part.detail}" alt="${part.alt}" loading="lazy" decoding="async" />
+        ${part.note ? `<p class="kf-model-note">${part.note}</p>` : ""}
+      </li>`).join("")}</ol>
+      <figure class="kf-compare">
+        <figcaption><strong>${twin.compare.title}</strong><em>${twin.compare.tag}</em></figcaption>
+        <ul>${twin.compare.rows.map(([label, value, picked]) => `<li class="${picked ? "is-picked" : ""}"><span class="kf-compare-label">${label}</span><span class="kf-compare-track"><span class="kf-compare-bar" style="width:${value}%"></span></span><span class="kf-compare-value">${value.toFixed(2)}%</span></li>`).join("")}</ul>
+        <p class="kf-caption">${twin.compare.caption}</p>
+      </figure>
     </article>
 
     <article class="kf-module kf-speed card-soft">
@@ -624,7 +633,7 @@ function renderKeyfinStrategy(project) {
       <div class="kf-result-grid">
         <section class="kf-panel kf-accuracy-art" aria-label="${results.accuracy.title}">
           <h5>${results.accuracy.title}</h5>
-          <img src="${results.accuracy.src}" alt="${results.accuracy.alt}" width="562" height="514" loading="lazy" decoding="async" />
+          <img src="${results.accuracy.src}" alt="${results.accuracy.alt}" width="633" height="514" loading="lazy" decoding="async" />
         </section>
         <section class="kf-panel" aria-label="${results.speed.title}">
           <h5>${results.speed.title}<strong>${results.speed.headline}</strong></h5>

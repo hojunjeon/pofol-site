@@ -202,25 +202,26 @@ export const projects = {
         index: "02",
         label: "바꾼 판단",
         title: "계산은 FDT, 코칭은 LLM",
-        core: { src: referenceMedia("evidence/ai/keyfin/coaching-core.webp"), alt: "질문을 해석해 기능을 연결하는 Coaching Core", title: "Coaching Core", text: "질문 해석 · 기능 연결" },
+        core: { src: referenceMedia("evidence/ai/keyfin/coaching-core.webp"), alt: "질문을 해석해 기능을 연결하는 Coaching Core" },
         parts: [
-          { src: referenceMedia("evidence/ai/keyfin/fdt-component.webp"), alt: "금융 계산을 맡는 FDT", title: "FDT", text: "금액 · 기간 · 확률 계산" },
-          { src: referenceMedia("evidence/ai/keyfin/llm-client-component.webp"), alt: "코칭 전략을 맡는 LLM Client", title: "LLM", text: "질문 이해 · 코칭 전략" },
-          { src: referenceMedia("evidence/ai/keyfin/sqlite-component.webp"), alt: "사용자 맥락을 저장하는 SQLite", title: "SQLite", text: "사용자 맥락 저장" },
+          { src: referenceMedia("evidence/ai/keyfin/fdt-component.webp"), alt: "금융 계산을 맡는 FDT" },
+          { src: referenceMedia("evidence/ai/keyfin/llm-client-component.webp"), alt: "코칭 전략을 맡는 LLM Client" },
+          { src: referenceMedia("evidence/ai/keyfin/sqlite-component.webp"), alt: "사용자 맥락을 저장하는 SQLite" },
+          { src: referenceMedia("evidence/ai/keyfin/gpu-vllm-component.webp"), alt: "GPU에서 vLLM으로 Qwen 27B를 서빙" },
         ],
       },
       twin: {
         index: "03",
-        label: "FDT 엔진 · 정확도",
-        title: "지난 거래로 400가지 미래를 계산",
-        flow: [
-          { src: referenceMedia("evidence/ai/keyfin/fdt-state-detail.webp"), alt: "잔액·자산·예산·고정지출로 구성된 현재 금융 상태", title: "현재 상태", text: "잔액 · 자산 · 예산 · 고정지출" },
-          { src: referenceMedia("evidence/ai/keyfin/fdt-action-detail.webp"), alt: "소비·절약·예산 변경·목표 설정 행동", title: "사용자 행동", text: "소비 · 절약 · 예산 변경 · 목표 설정" },
-          { src: referenceMedia("evidence/ai/keyfin/fdt-modes.webp"), alt: "예측·위험 분석·목표 달성·최적화 결과", title: "400회 시뮬레이션 결과", text: "예측 · 위험 분석 · 목표 달성 · 최적화" },
+        label: "금융 디지털 트윈(FDT)",
+        title: "FDT = 상태 모델 + 행동 모델 + 전이 함수",
+        parts: [
+          { main: referenceMedia("evidence/ai/keyfin/fdt-state.webp"), detail: referenceMedia("evidence/ai/keyfin/fdt-state-detail.webp"), alt: "상태 모델: 잔액·자산·예산·고정지출", role: "지금 내 돈은 어떤 상태인가" },
+          { main: referenceMedia("evidence/ai/keyfin/fdt-action.webp"), detail: referenceMedia("evidence/ai/keyfin/fdt-action-detail.webp"), alt: "행동 모델: 소비·절약·예산 변경·목표 설정", role: "무엇을 하려는가" },
+          { main: referenceMedia("evidence/ai/keyfin/fdt-transition.webp"), detail: referenceMedia("evidence/ai/keyfin/fdt-modes.webp"), alt: "전이 함수: 예측·위험 분석·목표 달성·최적화", role: "그러면 월말에 어떻게 되는가", note: "과거 거래 7일 블록을 400번 재조합" },
         ],
         compare: {
-          title: "예측 오차 (WAPE)",
-          tag: "11개 모델 중 1위",
+          title: "월 소비 예측 오차 (WAPE)",
+          tag: "예측 방식 11개 중 최저",
           caption: "낮을수록 정확 · 합성 거래 336건",
           rows: [
             ["FDT", 61.42, true],
@@ -246,7 +247,7 @@ export const projects = {
         accuracy: {
           title: "정확도",
           src: referenceMedia("evidence/ai/keyfin/keyfin-accuracy.webp"),
-          alt: "답변 속 필수 숫자 전달 0/14에서 14/14, 오답 수용 23건에서 0건, 예측 오차 WAPE 11개 모델 중 1위 61.42%",
+          alt: "답변 속 필수 숫자 전달 0/14에서 14/14, 오답 수용 23건에서 0건, 월 소비 예측 오차 WAPE 61.42%로 예측 방식 11개 중 최저",
         },
         speed: { title: "속도", headline: "최대 9.1배" },
         latency: {
@@ -262,14 +263,13 @@ export const projects = {
         charts: {
           title: "코칭 차트",
           items: [
-            { src: referenceMedia("evidence/ai/keyfin/keyfin-chart-envelope.webp"), alt: "카테고리 7개의 현재 사용률과 월말 예상 사용률을 세로 막대로 겹쳐 보여 주는 이번 달 남은 예산 차트", title: "카테고리별 사용률", width: 363, height: 345 },
             { src: referenceMedia("evidence/ai/keyfin/keyfin-chart-budget.webp"), alt: "예산 기간 예상 소비 860,000원과 항목별 현재·예상 사용률을 가로 막대로 보여 주는 차트", title: "월말 예상 소비", width: 726, height: 900 },
             { src: referenceMedia("evidence/ai/keyfin/keyfin-forecast-chart.webp"), alt: "지금까지의 누적 소비와 월말 예상 누적 소비를 예산선과 비교한 차트", title: "누적 소비 예측", width: 602, height: 516 },
           ],
         },
       },
     },
-    tech: ["Python", "NumPy", "FastAPI", "Qwen3.8-27B", "vLLM · L40S", "SQLite", "WebSocket", "pytest"],
+    tech: ["Python", "NumPy", "FastAPI", "Qwen3.8-27B", "vLLM", "NVIDIA L40S", "SQLite", "WebSocket"],
   },
 
   aegis: {
