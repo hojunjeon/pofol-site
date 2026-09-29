@@ -4217,41 +4217,45 @@ svg {
   100% { opacity: 0; }
 }
 
-/* ---- Strategy shared ---- */
+/* ---- Strategy shared: short title + one visual per module ---- */
 .project-keyfin .kf-head {
   display: flex;
   align-items: center;
   gap: 9px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .project-keyfin .kf-story h4,
 .project-keyfin .kf-module h4 {
-  margin: 0 0 6px;
-  color: var(--ink);
-  font-size: 17px;
-  font-weight: 800;
-  line-height: 1.45;
-}
-
-.project-keyfin .kf-lead {
   margin: 0 0 18px;
-  color: #4f5c72;
-  font-size: 13.5px;
-  line-height: 1.6;
+  color: var(--ink);
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.4;
 }
 
-/* ---- 01 / 02 before-after pair ---- */
+.project-keyfin .kf-module {
+  margin-top: 16px;
+  padding: 22px 24px 24px;
+}
+
+.project-keyfin .kf-caption {
+  margin: 0;
+  color: var(--kf-muted);
+  font-size: 12px;
+}
+
+/* ---- 01 / 02 ---- */
 .project-keyfin .kf-reframe-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
   gap: 0 16px;
 }
 
 .project-keyfin .kf-story {
   display: grid;
-  grid-row: span 4;
+  grid-row: span 3;
   grid-template-rows: subgrid;
   min-width: 0;
   padding: 20px 22px 22px;
@@ -4267,7 +4271,7 @@ svg {
 .project-keyfin .kf-roles {
   flex: 1;
   margin: 0;
-  padding: 6px 18px;
+  padding: 4px 18px;
   border-radius: 10px;
   background: var(--kf-well);
 }
@@ -4275,24 +4279,39 @@ svg {
 .project-keyfin .kf-bill dl { margin: 0; }
 
 .project-keyfin .kf-bill dl div,
-.project-keyfin .kf-bill-total {
+.project-keyfin .kf-bill-total,
+.project-keyfin .kf-roles div {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 16px;
-  padding: 12px 0;
+  padding: 13px 0;
   font-size: 14px;
 }
 
-.project-keyfin .kf-bill dl div + div { border-top: 1px solid #e3e7f0; }
-.project-keyfin .kf-bill dt { color: var(--kf-muted); }
+.project-keyfin .kf-bill dl div + div,
+.project-keyfin .kf-roles div + div { border-top: 1px solid #e3e7f0; }
 
-.project-keyfin .kf-bill dd {
+.project-keyfin .kf-bill dt,
+.project-keyfin .kf-roles dd { color: var(--kf-muted); }
+
+.project-keyfin .kf-bill dd,
+.project-keyfin .kf-roles dd {
   margin: 0;
-  color: var(--ink);
-  font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
+
+.project-keyfin .kf-bill dd {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.project-keyfin .kf-roles dt {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.project-keyfin .kf-roles dd { font-weight: 650; }
 
 .project-keyfin .kf-bill-total {
   margin: 0;
@@ -4306,7 +4325,7 @@ svg {
 
 .project-keyfin .kf-bill-total strong {
   color: #c9303f;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 850;
   font-variant-numeric: tabular-nums;
 }
@@ -4321,6 +4340,13 @@ svg {
   font-weight: 650;
 }
 
+.project-keyfin .kf-note strong {
+  margin-left: auto;
+  color: #c9303f;
+  font-size: 14px;
+  font-weight: 850;
+}
+
 .project-keyfin .kf-note .icon {
   width: 17px;
   height: 17px;
@@ -4330,155 +4356,102 @@ svg {
 
 .project-keyfin .kf-note-ok .icon { color: #13875d; stroke-width: 2.4; }
 
-.project-keyfin .kf-roles { list-style: none; }
-
-.project-keyfin .kf-roles li {
-  display: grid;
-  grid-template-columns: 116px minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  column-gap: 14px;
-  align-items: baseline;
-  padding: 11px 0;
-}
-
-.project-keyfin .kf-roles li + li { border-top: 1px solid #e3e7f0; }
-
-.project-keyfin .kf-role-what {
-  grid-row: 1 / span 2;
-  align-self: center;
-  color: var(--kf-muted);
-  font-size: 12.5px;
-  font-weight: 700;
-  line-height: 1.45;
-}
-
-.project-keyfin .kf-roles strong {
-  color: var(--ink);
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.project-keyfin .kf-roles small {
-  color: #4f5c72;
-  font-size: 12.5px;
-  line-height: 1.5;
-}
-
-/* ---- Module card ---- */
-.project-keyfin .kf-module {
-  margin-top: 16px;
-  padding: 22px 24px 24px;
-}
-
-.project-keyfin .kf-phone-scroll .kf-phone-screen img {
-  animation: kf-scroll 14s ease-in-out infinite;
-}
-
-.project-keyfin .kf-answer:hover .kf-phone-screen img { animation-play-state: paused; }
-
-/* Screen box is 600x1247 of a 600x1813 capture: the travel is 31.2% of the
-   image's own height, which holds at any rendered width. */
-@keyframes kf-scroll {
-  0%, 16% { transform: translateY(0); }
-  46%, 66% { transform: translateY(-31.2%); }
-  94%, 100% { transform: translateY(0); }
-}
-
-/* ---- 03 engine and accuracy ---- */
+/* ---- 03 engine flow + model comparison ---- */
 .project-keyfin .kf-twin-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: 16px;
   align-items: stretch;
 }
 
-.project-keyfin .kf-twin-side {
+.project-keyfin .kf-flow {
   display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 12px;
-  min-width: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  margin: 0;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--kf-stage);
+  list-style: none;
 }
 
-.project-keyfin .kf-accuracy {
+.project-keyfin .kf-flow li {
+  position: relative;
   display: grid;
   align-content: start;
-  gap: 6px;
-  padding: 16px 18px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  gap: 8px;
+  padding: 16px 14px;
+  border-radius: 10px;
+  background: #fff;
 }
 
-.project-keyfin .kf-accuracy .kf-stat { padding: 0; background: none; }
-
-.project-keyfin .kf-accuracy > p {
-  margin: 0;
-  color: #4f5c72;
-  font-size: 13px;
-  line-height: 1.55;
+.project-keyfin .kf-flow li + li::before {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  color: #7a869a;
+  font-size: 16px;
+  font-weight: 700;
+  transform: translateY(-50%);
 }
 
-.project-keyfin .kf-twin-io {
-  margin: 0;
-  padding: 4px 18px;
-  border-radius: 12px;
-  background: var(--kf-well);
-}
-
-.project-keyfin .kf-twin-io div {
-  display: grid;
-  gap: 3px;
-  padding: 11px 0;
-}
-
-.project-keyfin .kf-twin-io div + div { border-top: 1px solid #e3e7f0; }
-
-.project-keyfin .kf-twin-io dt {
-  color: var(--kf-muted);
-  font-size: 12.5px;
-  font-weight: 750;
-}
-
-.project-keyfin .kf-twin-io dd {
-  margin: 0;
+.project-keyfin .kf-flow strong {
+  margin-bottom: 4px;
   color: var(--ink);
-  font-size: 13.5px;
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.project-keyfin .kf-flow span {
+  color: var(--kf-ink-2);
+  font-size: 13px;
   font-weight: 650;
 }
 
-.project-keyfin .kf-twin-io .is-output dd {
-  color: var(--blue);
-  font-weight: 800;
+.project-keyfin .kf-flow .is-core strong,
+.project-keyfin .kf-flow .is-core span:last-child { color: var(--blue); }
+
+.project-keyfin .kf-flow .is-core span:last-child {
+  font-size: 22px;
+  font-weight: 850;
 }
 
 .project-keyfin .kf-compare {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 14px;
+  display: grid;
+  align-content: start;
+  gap: 16px;
   margin: 0;
-  padding: 18px 20px;
+  padding: 20px 22px;
   border: 1px solid var(--line);
   border-radius: 12px;
 }
 
-.project-keyfin .kf-compare figcaption strong {
-  display: block;
+.project-keyfin .kf-compare figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.project-keyfin .kf-compare figcaption strong,
+.project-keyfin .kf-panel h5 {
   color: var(--ink);
   font-size: 14px;
   font-weight: 800;
 }
 
-.project-keyfin .kf-compare figcaption span {
-  display: block;
-  margin-top: 3px;
-  color: var(--kf-muted);
-  font-size: 12px;
-  line-height: 1.5;
+.project-keyfin .kf-compare figcaption em,
+.project-keyfin .kf-point-head em {
+  color: var(--blue);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 800;
 }
 
 .project-keyfin .kf-compare ul {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -4486,40 +4459,30 @@ svg {
 
 .project-keyfin .kf-compare li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas: "label value" "bar bar";
-  align-items: baseline;
-  gap: 5px 10px;
+  grid-template-columns: 92px minmax(0, 1fr) 58px;
+  align-items: center;
+  gap: 10px;
 }
 
-.project-keyfin .kf-compare-label { grid-area: label; }
-.project-keyfin .kf-compare-value { grid-area: value; }
-.project-keyfin .kf-compare-track { grid-area: bar; }
-
-.project-keyfin .kf-compare-label {
+.project-keyfin .kf-compare-label,
+.project-keyfin .kf-compare-value {
   color: var(--kf-ink-2);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 650;
 }
 
-.project-keyfin .kf-compare-track {
-  display: block;
-  height: 14px;
+.project-keyfin .kf-compare-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
+
+.project-keyfin .kf-compare-track { display: block; height: 16px; }
 
 .project-keyfin .kf-compare-bar {
   display: block;
   height: 100%;
   border-radius: 0 4px 4px 0;
   background: var(--kf-before);
-}
-
-.project-keyfin .kf-compare-value {
-  color: var(--kf-ink-2);
-  font-size: 13px;
-  font-weight: 700;
-  text-align: right;
-  font-variant-numeric: tabular-nums;
 }
 
 .project-keyfin .kf-compare .is-picked .kf-compare-label,
@@ -4530,10 +4493,99 @@ svg {
 
 .project-keyfin .kf-compare .is-picked .kf-compare-bar { background: var(--blue); }
 
-/* ---- Stat (label + before -> after) ---- */
+/* ---- 04 bottleneck bar + two fixes ---- */
+.project-keyfin .kf-split {
+  margin: 0 0 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: var(--kf-well);
+}
+
+.project-keyfin .kf-split figcaption {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: var(--kf-ink-2);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.project-keyfin .kf-split figcaption strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.project-keyfin .kf-split-bar {
+  display: flex;
+  gap: 2px;
+  height: 22px;
+}
+
+.project-keyfin .kf-split-fdt {
+  flex: none;
+  min-width: 5px;
+  border-radius: 4px 0 0 4px;
+  background: var(--blue);
+}
+
+.project-keyfin .kf-split-rest {
+  flex: 1;
+  border-radius: 0 4px 4px 0;
+  background: var(--kf-before);
+}
+
+.project-keyfin .kf-split-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  color: var(--kf-muted);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.project-keyfin .kf-split-labels .is-fdt { color: var(--blue); }
+
+.project-keyfin .kf-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.project-keyfin .kf-point {
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.project-keyfin .kf-point-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+}
+
+.project-keyfin .kf-point-head span {
+  color: var(--blue);
+  font-weight: 850;
+}
+
+.project-keyfin .kf-point-head strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.project-keyfin .kf-point-head em { margin-left: auto; }
+
+/* ---- Stat: label + before -> after ---- */
 .project-keyfin .kf-stat {
   display: grid;
   gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid #e3e7f0;
 }
 
 .project-keyfin .kf-stat p { margin: 0; }
@@ -4565,115 +4617,96 @@ svg {
 
 .project-keyfin .kf-stat-value strong {
   color: var(--ink);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 850;
-  line-height: 1.1;
-  letter-spacing: 0;
+  line-height: 1.15;
 }
 
-/* ---- 04 latency fix ---- */
-.project-keyfin .kf-points {
+/* ---- 05 accuracy + speed, then the coaching chart ---- */
+.project-keyfin .kf-result-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 16px;
 }
 
-.project-keyfin .kf-point {
+.project-keyfin .kf-panel {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 6px;
-  padding: 18px 20px;
-  border-radius: 12px;
-  background: var(--kf-well);
-}
-
-.project-keyfin .kf-point h5 {
-  margin: 0;
-  color: var(--ink);
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.project-keyfin .kf-point > p {
-  margin: 0 0 8px;
-  color: #4f5c72;
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.project-keyfin .kf-point .kf-stat {
-  padding-top: 12px;
-  border-top: 1px solid #e3e7f0;
-}
-
-/* ---- 05 results ---- */
-.project-keyfin .kf-showcase {
-  display: grid;
-  grid-template-columns: 236px minmax(0, 1fr);
-  gap: 40px;
-  align-items: start;
-  margin-top: 16px;
-  padding: 28px 34px;
-  border-radius: 12px;
-  background: var(--kf-stage);
-}
-
-.project-keyfin .kf-answer,
-.project-keyfin .kf-forecast {
-  display: grid;
   gap: 14px;
-  margin: 0;
-}
-
-.project-keyfin .kf-forecast img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.project-keyfin .kf-showcase figcaption strong {
-  display: block;
-  color: var(--ink);
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.project-keyfin .kf-showcase figcaption span {
-  display: block;
-  margin-top: 3px;
-  color: #4f5c72;
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.project-keyfin .kf-closing {
-  margin: 20px 0 0;
-  color: var(--ink);
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.65;
-}
-
-.project-keyfin .kf-latency {
-  margin: 0;
-  padding: 18px 20px 10px;
+  min-width: 0;
+  padding: 20px 22px;
   border: 1px solid var(--line);
   border-radius: 12px;
 }
 
-.project-keyfin .kf-latency figcaption {
+.project-keyfin .kf-panel h5 {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  gap: 8px 18px;
+  align-items: baseline;
+  margin: 0;
+  font-size: 16px;
 }
 
-.project-keyfin .kf-latency figcaption strong {
+.project-keyfin .kf-panel h5 strong {
+  color: var(--blue);
+  font-size: 22px;
+  font-weight: 850;
+}
+
+.project-keyfin .kf-meter-list {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-keyfin .kf-meter-list li {
+  display: grid;
+  gap: 5px;
+}
+
+.project-keyfin .kf-meter-list p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 3px;
+  font-size: 13px;
+}
+
+.project-keyfin .kf-meter-list p span {
+  color: var(--kf-ink-2);
+  font-weight: 650;
+}
+
+.project-keyfin .kf-meter-list p strong {
   color: var(--ink);
-  font-size: 14px;
-  font-weight: 800;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+
+.project-keyfin .kf-meter {
+  display: block;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #e6e9f2;
+}
+
+.project-keyfin .kf-meter i {
+  display: block;
+  height: 100%;
+  border-radius: 0 3px 3px 0;
+}
+
+.project-keyfin .kf-meter .is-before { background: var(--kf-before); }
+.project-keyfin .kf-meter .is-after { background: var(--blue); }
+
+.project-keyfin .kf-latency-plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .project-keyfin .kf-legend {
@@ -4696,16 +4729,6 @@ svg {
   height: 11px;
   border-radius: 3px;
 }
-
-.project-keyfin .kf-latency-plot svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-top: 6px;
-}
-
-.project-keyfin .kf-chart-mid,
-.project-keyfin .kf-chart-narrow { display: none !important; }
 
 .project-keyfin .kf-axis line { stroke: #e4e8f0; stroke-width: 1; }
 
@@ -4740,29 +4763,57 @@ svg {
 .project-keyfin .kf-bar { transition: opacity .15s; }
 .project-keyfin .kf-group:hover .kf-bar { opacity: .82; }
 
+.project-keyfin .kf-coach-chart {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  margin: 16px 0 0;
+  padding: 20px 30px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.project-keyfin .kf-coach-chart img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-keyfin .kf-coach-chart figcaption {
+  display: grid;
+  gap: 12px;
+}
+
+.project-keyfin .kf-coach-chart figcaption strong {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.project-keyfin .kf-coach-chart figcaption span {
+  color: var(--kf-ink-2);
+  font-size: 13.5px;
+  font-weight: 650;
+}
+
 /* ---- Tablet ---- */
 @media (max-width: 900px) {
   /* ga-best.css pins the paper gutter at its desktop value; restore the
      tablet gutter locally so the section keeps its reading width. */
   .project-keyfin { --paper-pad-x: 30px; }
   .project-keyfin .keyfin-stage { padding: 22px 20px 24px; }
-  .project-keyfin .kf-reframe-grid {
+  .project-keyfin .kf-screens { gap: 0 16px; }
+  .project-keyfin .kf-reframe-grid,
+  .project-keyfin .kf-twin-grid,
+  .project-keyfin .kf-result-grid,
+  .project-keyfin .kf-coach-chart {
     grid-template-columns: 1fr;
     grid-template-rows: none;
     gap: 12px;
   }
-  .project-keyfin .kf-story {
-    display: flex;
-    flex-direction: column;
-  }
-  .project-keyfin .kf-story-body { margin-top: 2px; }
-  .project-keyfin .kf-stat-value strong { font-size: 24px; }
-  .project-keyfin .kf-stat-value span:first-child { font-size: 14px; }
-  .project-keyfin .kf-chart-wide { display: none !important; }
-  .project-keyfin .kf-chart-mid { display: block !important; }
-  .project-keyfin .kf-screens { gap: 0 16px; }
-  .project-keyfin .kf-twin-grid { grid-template-columns: 1fr; }
-  .project-keyfin .kf-showcase { grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px; }
+  .project-keyfin .kf-story { display: flex; flex-direction: column; }
 }
 
 /* ---- Phone ---- */
@@ -4771,7 +4822,6 @@ svg {
   .project-keyfin .keyfin-stage { padding: 18px 0 20px; }
   .project-keyfin .kf-stage-head { padding: 0 16px; margin-bottom: 18px; }
   .project-keyfin .kf-logo { width: 108px; }
-  .project-keyfin .kf-stage-head p { font-size: 13px; }
 
   .project-keyfin .kf-screens {
     grid-template-columns: repeat(3, 66%);
@@ -4780,47 +4830,16 @@ svg {
     padding: 4px 16px 14px;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 16px;
-    overscroll-behavior-x: contain;
   }
 
   .project-keyfin .kf-screen { scroll-snap-align: start; }
   .project-keyfin .kf-screen > .kf-phone { width: min(100%, 200px); }
-
-  .project-keyfin .kf-reframe-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    gap: 12px;
-  }
-
-  .project-keyfin .kf-story {
-    display: flex;
-    flex-direction: column;
-    padding: 18px 16px;
-  }
-
-  .project-keyfin .kf-story h4,
-  .project-keyfin .kf-module h4 { font-size: 16px; }
-
-  .project-keyfin .kf-roles li { grid-template-columns: 96px minmax(0, 1fr); }
-  .project-keyfin .kf-module { padding: 18px 16px 18px; }
-
-  .project-keyfin .kf-showcase { grid-template-columns: 1fr; gap: 24px; padding: 20px 14px; }
-  .project-keyfin .kf-answer { justify-items: center; }
-  .project-keyfin .kf-answer .kf-phone { width: min(100%, 220px); }
+  .project-keyfin .kf-story,
+  .project-keyfin .kf-module { padding: 18px 16px; }
+  .project-keyfin .kf-flow { grid-template-columns: 1fr; gap: 10px; padding: 12px; }
+  .project-keyfin .kf-flow li + li::before { content: none; }
   .project-keyfin .kf-points { grid-template-columns: 1fr; }
-
-  .project-keyfin .kf-twin-io { padding: 2px 14px; }
-  .project-keyfin .kf-compare { padding: 16px 14px; }
-  .project-keyfin .kf-latency { padding: 16px 12px 8px; }
-  .project-keyfin .kf-chart-mid { display: none !important; }
-  .project-keyfin .kf-chart-narrow { display: block !important; }
-  .project-keyfin .kf-chart-narrow .kf-category { font-size: 13px; }
-  .project-keyfin .kf-chart-narrow .kf-speedup,
-  .project-keyfin .kf-chart-narrow .kf-value { font-size: 12px; }
-  .project-keyfin .kf-chart-narrow .kf-axis text,
-  .project-keyfin .kf-chart-narrow .kf-unit { font-size: 11px; }
-  .project-keyfin .kf-roles li { grid-template-columns: 1fr; row-gap: 2px; }
-  .project-keyfin .kf-role-what { grid-row: auto; }
+  .project-keyfin .kf-coach-chart { padding: 14px; }
 }
 
 @media (max-width: 900px) {
